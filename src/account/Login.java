@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class login
  */
-@WebServlet("/login")
-public class login extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public login() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,7 +50,6 @@ public class login extends HttpServlet {
 		}
 		else { // bad credentials
 			out.print("<p style=\"color:red;\">Incorrect e-mail or password. Please verify your credentials</p>");
-			out.print("\n" + email + "\n" + pass);
 			RequestDispatcher rd=request.getRequestDispatcher("index.html");
 			rd.include(request, response);
 		}
