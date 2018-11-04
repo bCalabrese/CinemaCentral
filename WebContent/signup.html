@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Cinema Central</title>
+		<script src="validate.js"></script>
 	</head>
 	<body>
-		<form action="SignUp" method="post">
+		<form action="SignUp" method="post" name="signup" onsubmit="return validateSignUp()">
 			<h1>Account Information</h1>
 			First Name:<input type="text" name="firstName"/>
 			Last Name:<input type="text" name="lastName"/>

@@ -55,13 +55,7 @@ public class SignUp extends HttpServlet {
 		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String phoneNumber = request.getParameter("phone");
-		
-		if (!pass1.equals(pass2)) { // maybe do this in javascript?
-			out.print("<p style=\"color:red;\">Passwords do not match!</p>");
-			RequestDispatcher rd=request.getRequestDispatcher("signup.html");
-			rd.include(request, response);
-		}
-		
+
 		boolean accountExists = true;
 		// TODO: query database for an account with this email
 		

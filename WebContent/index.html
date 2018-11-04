@@ -3,10 +3,11 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Cinema Central</title>
+		<script src="validate.js"></script>
 	</head>
 	<body>
 		<h1>Welcome to Cinema Central! The world's #1 source for downloadable cinematic content!</h1>
-		<form action="Login" method="post">
+		<form action="Login" method="post" name="login" onsubmit="return validateLogin()">
 			E-Mail:<input type="email" name="email"/>
 			Password:<input type="password" name="password"/>
 			<input type="submit" value="login"/>
