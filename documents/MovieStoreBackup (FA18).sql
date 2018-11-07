@@ -35,28 +35,27 @@ CREATE TABLE `card` (
 -- Dumping data for table `card`
 --
 
-
 INSERT INTO `card` (`cardID`,`memberID`,`creditCardCCV`,`creditCardNumber`,`cardHolderFirstName`,`cardHolderLastName`,`expYear`,`expMonth`,`ccType`) VALUES 
- (4,10001,12345,'3994781776575320','Richard','Shelby',2009,11,'AmericanExpress\r'),
- (5,10002,12345,'1933667408756440','Jeff','Sessions',2011,10,'Discover\r'),
- (6,10003,12345,'9751105946061040','Ted','Stevens',2011,5,'Visa\r'),
- (7,10004,12345,'1202366155621340','Lisa','Murkowski',2010,5,'Discover\r'),
- (8,10005,12345,'8035362684046050','John','McCain',2012,9,'AmericanExpress\r'),
- (9,10006,12345,'1876408666555860','Jon','Kyl',2008,9,'Discover\r'),
- (10,10007,12345,'7979756355328080','Blanche','Lincoln',2009,7,'MasterCard\r'),
- (11,10008,12345,'6295809193605710','Mark','Pryor',2008,9,'MasterCard\r'),
- (12,10009,12345,'5991223319790250','Dianne','Feinstein',2009,4,'Visa\r'),
- (13,10010,12345,'4919623420034730','Barbara','Boxer',2012,7,'Visa\r'),
- (14,10011,12345,'2568476161496700','Wayne','Allard',2010,3,'Visa\r'),
- (15,10012,12345,'8648458933928500','Ken','Salazar',2015,2,'Discover\r'),
- (16,10013,12345,'9892984032195930','Chris','Dodd',2013,8,'Discover\r'),
- (17,10014,12345,'3590389378753280','Joe','Lieberman',2016,8,'AmericanExpress\r'),
- (18,10015,12345,'7389010056583180','Joe','Biden',2009,11,'MasterCard\r'),
- (19,10016,12345,'4238545958242720','Tom','Carper',2011,1,'Visa\r'),
- (20,10017,12345,'9542286651415390','Bill','Nelson',2009,9,'Discover\r'),
- (21,10018,12345,'7389010056583180','Mel','Martinez',2010,6,'MasterCard\r'),
- (22,10019,12345,'4087388550889250','Dick','Durbin',2009,6,'MasterCard\r'),
- (23,10020,12345,'5997601199766710','Barack','Obama',2013,1,'Visa\r');
+ (4,10001,12345,'3994781776575320','Richard','Shelby',2009,11,'AmericanExpress'),
+ (5,10002,12345,'1933667408756440','Jeff','Sessions',2011,10,'Discover'),
+ (6,10003,12345,'9751105946061040','Ted','Stevens',2011,5,'Visa'),
+ (7,10004,12345,'1202366155621340','Lisa','Murkowski',2010,5,'Discover'),
+ (8,10005,12345,'8035362684046050','John','McCain',2012,9,'AmericanExpress'),
+ (9,10006,12345,'1876408666555860','Jon','Kyl',2008,9,'Discover'),
+ (10,10007,12345,'7979756355328080','Blanche','Lincoln',2009,7,'MasterCard'),
+ (11,10008,12345,'6295809193605710','Mark','Pryor',2008,9,'MasterCard'),
+ (12,10009,12345,'5991223319790250','Dianne','Feinstein',2009,4,'Visa'),
+ (13,10010,12345,'4919623420034730','Barbara','Boxer',2012,7,'Visa'),
+ (14,10011,12345,'2568476161496700','Wayne','Allard',2010,3,'Visa'),
+ (15,10012,12345,'8648458933928500','Ken','Salazar',2015,2,'Discover'),
+ (16,10013,12345,'9892984032195930','Chris','Dodd',2013,8,'Discover'),
+ (17,10014,12345,'3590389378753280','Joe','Lieberman',2016,8,'AmericanExpress'),
+ (18,10015,12345,'7389010056583180','Joe','Biden',2009,11,'MasterCard'),
+ (19,10016,12345,'4238545958242720','Tom','Carper',2011,1,'Visa'),
+ (20,10017,12345,'9542286651415390','Bill','Nelson',2009,9,'Discover'),
+ (21,10018,12345,'7389010056583180','Mel','Martinez',2010,6,'MasterCard'),
+ (22,10019,12345,'4087388550889250','Dick','Durbin',2009,6,'MasterCard'),
+ (23,10020,12345,'5997601199766710','Barack','Obama',2013,1,'Visa');
 
 
 
@@ -78,9 +77,9 @@ CREATE TABLE `membership` (
 
 
 INSERT INTO `membership` (`tierName`,`downloadsPerMonth`,`tierMonthlyCost`) VALUES 
- ('Gold',2,'$6.95 \r'),
- ('Platinum',3,'$9.95 \r'),
- ('Silver',1,'$3.95 \r'),
+ ('Gold',2,'$6.95'),
+ ('Platinum',3,'$9.95'),
+ ('Silver',1,'$3.95'),
  ('test',3,NULL);
 
 
@@ -96,6 +95,7 @@ CREATE TABLE `member` (
   `userName` varchar(45) default NULL,
   `firstName` varchar(45) default NULL,
   `lastName` varchar(45) default NULL,
+  `age` tinyint(3) default NULL,
   `billAddressLine1` varchar(45) default NULL,
   `billAddressLine2` varchar(45) default NULL,
   `billCity` varchar(45) default NULL,
@@ -120,29 +120,29 @@ CREATE TABLE `member` (
 --
 
 
-INSERT INTO `member` (`memberID`,`tierName`,`userName`,`firstName`,`lastName`,`billAddressLine1`,`billAddressLine2`,`billCity`,`billState`,`billZipCode`,`shipAddressLine1`,`shipAddressLine2`,`shipCity`,`shipState`,`shipZipCode`,`phoneNumber`,`emailAddress`,`memberPassword`,`memberSince`,`activeStatus`,`genrePreference`) VALUES 
- (10001,'silver','rshelby','Richard','Shelby','422 Princeton Ct.','','Birmingham','AL','56231','422 Princeton Ct.','','Birmingham','AL','56231','(555) 555-0001','rshelby@yahoo.com','sesame','2007-01-01',1,'comedy'),
- (10002,'gold','jsessions','Jeff','Sessions','68 Hanover Dr.','Apt 2','Mobile','AL','56498','68 Hanover Dr.','Apt 2','Mobile','AL','56498','(555) 555-0002','jsessions@yahoo.com','sesame','2007-01-01',1,'horror'),
- (10003,'platinum','tstevens','Ted','Stevens','1001 S. Limerick Dr.','','Anchorage','AK','45232','1001 S. Limerick Dr.','','Anchorage','AK','45232','(555) 555-1112','tstevens@yahoo.com','sesame','2007-01-01',1,'thriller'),
- (10004,'silver','lmurkowski','Lisa','Murkowski','78 Bay Rd.','','Anchorage','AK','45678','78 Bay Rd.','','Anchorage','AK','45678','(555) 558-4621','lmurkowski@yahoo.com','sesame','2007-01-01',1,'sci-fi'),
- (10005,'gold','jmccain','John','McCain','3042 W. Sunset Blvd','','Phoenix','AZ','98576','3042 W. Sunset Blvd','','Phoenix','AZ','98576','(555) 982-3861','jmccain@yahoo.com','sesame','2008-01-01',1,'drama'),
- (10006,'platinum','jkyl','Jon','Kyl','893 E.Rocky Rd.','Suite 701','Phoenix','AZ','89454','893 E.Rocky Rd.','Suite 701','Phoenix','AZ','89454','(555) 465-7312','jkyl@yahoo.com','sesame','2006-01-01',1,'action'),
- (10007,'silver','blincoln','Blanche','Lincoln','3753 N. Pulaski Rd','','Helena','AR','64512','3753 N. Pulaski Rd','','Helena','AR','64512','(555) 643-1248','blincoln@yahoo.com','sesame','2006-01-01',1,'comedy'),
- (10008,'gold','mpryor','Mark','Pryor','9 Faith Hill','Apt 7','Boumont','AR','76454','9 Faith Hill','Apt 7','Boumont','AR','76454','(555) 643-1279','mpryor@yahoo.com','sesame','2008-01-01',1,'horror'),
- (10009,'platinum','dfeinstein','Dianne','Feinstein','239 Seaside Rd.','','Pasadena','CA','40232','239 Seaside Rd.','','Pasadena','CA','40232','(555) 976-4542','dfeinstein@yahoo.com','sesame','2008-01-01',1,'thriller'),
- (10010,'silver','bboxer','Barbara','Boxer','678 S. Wales Street','','San Francisco','CA','30575','678 S. Wales Street','','San Francisco','CA','30575','(555) 643-4789','bboxer@yahoo.com','sesame','2006-01-01',1,'sci-fi'),
- (10011,'gold','wallard','Wayne','Allard','3833 N. Pinecone Way','','Denver','CO','78663','3833 N. Pinecone Way','','Denver','CO','78663','(555) 982-3572','wallard@yahoo.com','sesame','2008-01-01',1,'drama'),
- (10012,'platinum','ksalazar','Ken','Salazar','1232 E. 5th Street','','Boulder','CO','30454','1232 E. 5th Street','','Boulder','CO','30454','(892) 352-8758','ksalazar@yahoo.com','sesame','2008-01-01',1,'action'),
- (10013,'silver','cdodd','Chris','Dodd','89','','New Haven','CT','34222','89','','New Haven','CT','34222','(304) 985-7129','cdodd@yahoo.com','sesame','2007-01-01',1,'comedy '),
- (10014,'gold','jlieberman','Joe','Lieberman','468 Kane Court','','Bridgeport','CT','39845','468 Kane Court','','Bridgeport','CT','39845','(398) 457-1029','jlieberman@yahoo.com','sesame','2007-01-01',1,'horror'),
- (10015,'platinum','jbiden','Joe','Biden','9485 Diversey Ave.','','Wellington','DE','2435','9485 Diversey Ave.','','Wellington','DE','2435','(239) 482-9762','jbiden@yahoo.com','sesame','2007-01-01',1,'thriller'),
- (10016,'silver','tcaper','Tom','Carper','12 Peacock Circle','','Monterrey','DE','24872','12 Peacock Circle','','Monterrey','DE','24872','(239) 847-5120','tcarper@yahoo.com','sesame','2008-01-01',1,'sci-fi'),
- (10017,'gold','bnelson','Bill','Nelson','4820 Futon Rd.','','Miami','FL','20841','4820 Futon Rd.','','Miami','FL','20841','(304) 920-9678','bnelson@yahoo.com','sesame','2007-01-01',1,'drama'),
- (10018,'platinum','mmartinez','Mel','Martinez','248 Beachside Drive','','Pensacola','FL','60948','248 Beachside Drive','','Pensacola','FL','60948','(789) 465-8927','mmartinez@yahoo.com','sesame','2008-01-01',1,'action'),
- (10019,'silver','ddurbin','Dick','Durbin','300 E. Wacker Dr.','','Chicago','IL','60001','300 E. Wacker Dr.','','Chicago','IL','60001','(312) 394-8762','ddurbin@yahoo.com','sesame','2008-01-01',1,'comedy'),
- (10020,'gold','bobama','Barack','Obama','32 S. State Street','','Chicago','IL','60001','32 S. State Street','','Chicago','IL','60001','(312) 389-4762','bobama@yahoo.com','sesame','2008-01-01',1,'horror'),
- (10041,'Platinum','LASTTEST','LASTTEST','LASTTEST','LASTTEST','LASTTEST','LASTTEST','KY','345345','LASTTEST','LASTTEST','LASTTEST','KY','34543','34534','LASTTEST','LASTTEST',NULL,NULL,'action'),
- (10042,'Platinum','finaltest','finaltest','finaltest','finaltest','finaltest','finaltest','LA','34534','finaltest','finaltest','finaltest','MD','finaltest','34534534534','finaltest','finaltest',NULL,NULL,'action');
+INSERT INTO `member` (`memberID`,`tierName`,`userName`,`firstName`,`lastName`,`age`,`billAddressLine1`,`billAddressLine2`,`billCity`,`billState`,`billZipCode`,`shipAddressLine1`,`shipAddressLine2`,`shipCity`,`shipState`,`shipZipCode`,`phoneNumber`,`emailAddress`,`memberPassword`,`memberSince`,`activeStatus`,`genrePreference`) VALUES 
+ (10001,'silver','rshelby','Richard','Shelby',1,'422 Princeton Ct.','','Birmingham','AL','56231','422 Princeton Ct.','','Birmingham','AL','56231','(555) 555-0001','rshelby@yahoo.com','sesame','2007-01-01',1,'comedy'),
+ (10002,'gold','jsessions','Jeff','Sessions',2,'68 Hanover Dr.','Apt 2','Mobile','AL','56498','68 Hanover Dr.','Apt 2','Mobile','AL','56498','(555) 555-0002','jsessions@yahoo.com','sesame','2007-01-01',1,'horror'),
+ (10003,'platinum','tstevens','Ted','Stevens',3,'1001 S. Limerick Dr.','','Anchorage','AK','45232','1001 S. Limerick Dr.','','Anchorage','AK','45232','(555) 555-1112','tstevens@yahoo.com','sesame','2007-01-01',1,'thriller'),
+ (10004,'silver','lmurkowski','Lisa','Murkowski',4,'78 Bay Rd.','','Anchorage','AK','45678','78 Bay Rd.','','Anchorage','AK','45678','(555) 558-4621','lmurkowski@yahoo.com','sesame','2007-01-01',1,'sci-fi'),
+ (10005,'gold','jmccain','John','McCain',5,'3042 W. Sunset Blvd','','Phoenix','AZ','98576','3042 W. Sunset Blvd','','Phoenix','AZ','98576','(555) 982-3861','jmccain@yahoo.com','sesame','2008-01-01',1,'drama'),
+ (10006,'platinum','jkyl','Jon','Kyl',6,'893 E.Rocky Rd.','Suite 701','Phoenix','AZ','89454','893 E.Rocky Rd.','Suite 701','Phoenix','AZ','89454','(555) 465-7312','jkyl@yahoo.com','sesame','2006-01-01',1,'action'),
+ (10007,'silver','blincoln','Blanche','Lincoln',7,'3753 N. Pulaski Rd','','Helena','AR','64512','3753 N. Pulaski Rd','','Helena','AR','64512','(555) 643-1248','blincoln@yahoo.com','sesame','2006-01-01',1,'comedy'),
+ (10008,'gold','mpryor','Mark','Pryor',8,'9 Faith Hill','Apt 7','Boumont','AR','76454','9 Faith Hill','Apt 7','Boumont','AR','76454','(555) 643-1279','mpryor@yahoo.com','sesame','2008-01-01',1,'horror'),
+ (10009,'platinum','dfeinstein','Dianne','Feinstein',9,'239 Seaside Rd.','','Pasadena','CA','40232','239 Seaside Rd.','','Pasadena','CA','40232','(555) 976-4542','dfeinstein@yahoo.com','sesame','2008-01-01',1,'thriller'),
+ (10010,'silver','bboxer','Barbara','Boxer',10,'678 S. Wales Street','','San Francisco','CA','30575','678 S. Wales Street','','San Francisco','CA','30575','(555) 643-4789','bboxer@yahoo.com','sesame','2006-01-01',1,'sci-fi'),
+ (10011,'gold','wallard','Wayne','Allard',11,'3833 N. Pinecone Way','','Denver','CO','78663','3833 N. Pinecone Way','','Denver','CO','78663','(555) 982-3572','wallard@yahoo.com','sesame','2008-01-01',1,'drama'),
+ (10012,'platinum','ksalazar','Ken','Salazar',12,'1232 E. 5th Street','','Boulder','CO','30454','1232 E. 5th Street','','Boulder','CO','30454','(892) 352-8758','ksalazar@yahoo.com','sesame','2008-01-01',1,'action'),
+ (10013,'silver','cdodd','Chris','Dodd',13,'89','','New Haven','CT','34222','89','','New Haven','CT','34222','(304) 985-7129','cdodd@yahoo.com','sesame','2007-01-01',1,'comedy '),
+ (10014,'gold','jlieberman','Joe','Lieberman',14,'468 Kane Court','','Bridgeport','CT','39845','468 Kane Court','','Bridgeport','CT','39845','(398) 457-1029','jlieberman@yahoo.com','sesame','2007-01-01',1,'horror'),
+ (10015,'platinum','jbiden','Joe','Biden',15,'9485 Diversey Ave.','','Wellington','DE','2435','9485 Diversey Ave.','','Wellington','DE','2435','(239) 482-9762','jbiden@yahoo.com','sesame','2007-01-01',1,'thriller'),
+ (10016,'silver','tcaper','Tom','Carper',16,'12 Peacock Circle','','Monterrey','DE','24872','12 Peacock Circle','','Monterrey','DE','24872','(239) 847-5120','tcarper@yahoo.com','sesame','2008-01-01',1,'sci-fi'),
+ (10017,'gold','bnelson','Bill','Nelson',17,'4820 Futon Rd.','','Miami','FL','20841','4820 Futon Rd.','','Miami','FL','20841','(304) 920-9678','bnelson@yahoo.com','sesame','2007-01-01',1,'drama'),
+ (10018,'platinum','mmartinez','Mel','Martinez',18,'248 Beachside Drive','','Pensacola','FL','60948','248 Beachside Drive','','Pensacola','FL','60948','(789) 465-8927','mmartinez@yahoo.com','sesame','2008-01-01',1,'action'),
+ (10019,'silver','ddurbin','Dick','Durbin',19,'300 E. Wacker Dr.','','Chicago','IL','60001','300 E. Wacker Dr.','','Chicago','IL','60001','(312) 394-8762','ddurbin@yahoo.com','sesame','2008-01-01',1,'comedy'),
+ (10020,'gold','bobama','Barack','Obama',20,'32 S. State Street','','Chicago','IL','60001','32 S. State Street','','Chicago','IL','60001','(312) 389-4762','bobama@yahoo.com','sesame','2008-01-01',1,'horror'),
+ (10041,'Platinum','LASTTEST','LASTTEST','LASTTEST',0,'LASTTEST','LASTTEST','LASTTEST','KY','345345','LASTTEST','LASTTEST','LASTTEST','KY','34543','34534','LASTTEST','LASTTEST',NULL,NULL,'action'),
+ (10042,'Platinum','finaltest','finaltest','finaltest',0,'finaltest','finaltest','finaltest','LA','34534','finaltest','finaltest','finaltest','MD','finaltest','34534534534','finaltest','finaltest',NULL,NULL,'action');
 
 
 
