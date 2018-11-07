@@ -249,6 +249,29 @@ INSERT INTO `moviereview` (`movieID`, `memberID`, `rating`, `reviewText`) VALUES
   (51, 13, 4, 'Ok but Infinity War was better...');
 
 --
+-- Definition of table `viewedmovies`
+--
+
+DROP TABLE IF EXISTS `viewedmovies`;
+CREATE TABLE `viewedmovies` (
+  `movieID` int(10) unsigned NOT NULL auto_increment,
+  `memberID` int(10) unsigned NOT NULL,
+  `numViews` int(10) unsigned NOT NULL,
+  PRIMARY KEY USING BTREE (`movieID`,`memberID`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+
+
+--
+-- Dumping data for table `moviereview`
+--
+
+INSERT INTO `viewedmovies` (`movieID`, `memberID`, `numViews`) VALUES
+  (1, 1, 2),
+  (2, 2, 4),
+  (3, 3, 1),
+  (51, 13, 3);
+
+--
 -- Definition of table `movieperson`
 --
 
