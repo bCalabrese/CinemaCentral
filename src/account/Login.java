@@ -44,13 +44,23 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
 		
-		if (email.equals("letmein@email.com") && pass.equals("sesame")) { // TODO: validate credentials with database
-			RequestDispatcher rd=request.getRequestDispatcher("landing.html");
-			rd.forward(request, response);
+		// Retrive user bean
+		UserAccount user = (UserAccount)request.getSession().getAttribute("userBean");
+		
+		//
+		if (user == null || user.getMemberID() == -1) {
+			user = UserDao.attemptLogin(email, pass);
+		}
+		
+		//If user exists and credentials are valid
+		if (user != null && user.isSessionValid()) { 
+			//Set javabean
+			request.getSession().setAttribute("userBean", user);
+			response.sendRedirect("landing.jsp");
 		}
 		else { // bad credentials
 			out.print("<p style=\"color:red;\">Incorrect e-mail or password. Please verify your credentials</p>");
-			RequestDispatcher rd=request.getRequestDispatcher("index.html");
+			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 			rd.include(request, response);
 		}
 		out.close();
