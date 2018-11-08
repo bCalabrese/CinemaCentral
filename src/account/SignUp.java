@@ -44,7 +44,9 @@ public class SignUp extends HttpServlet {
 		
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
-		String age = request.getParameter("age");
+		int age = Integer.parseInt(request.getParameter("age"));
+		
+		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String pass1 = request.getParameter("pass1");
 		String pass2 = request.getParameter("pass2");
@@ -55,19 +57,21 @@ public class SignUp extends HttpServlet {
 		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String phoneNumber = request.getParameter("phone");
-
-		boolean accountExists = true;
+		
+		boolean accountExists = UserDao.isEmailTaken(email);
+		
 		// TODO: query database for an account with this email
 		
 		if (accountExists) {
-			out.print("<p style=\"color:red;\">Account with this e-mail address already exists!</p>");
-			RequestDispatcher rd=request.getRequestDispatcher("signup.html");
-			rd.include(request, response);
+			request.setAttribute("errorMessage", "<strong>Error!</strong> Account with this e-mail address already exists!");
+			RequestDispatcher rd=request.getRequestDispatcher("signup.jsp");
+			rd.forward(request, response);
 		}
 		else { // go back to login 
 			// TODO: put account into database, java bean (?)
-			RequestDispatcher rd=request.getRequestDispatcher("index.html");
-			rd.forward(request, response);
+			UserDao.createAccount(firstName, lastName, age, email, pass1, address1, 
+					address2, city, state, zipcode, username, phoneNumber);
+			response.sendRedirect("index.jsp");
 		}
 	}
 
