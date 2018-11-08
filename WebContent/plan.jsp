@@ -9,11 +9,6 @@
 </head>
 <body>
 	<h1 style="text-align: center">Payment Plan</h1>
-	<!-- 	<ul style="text-align:center">
-		<li>Silver</li>
-		<li>gold</li>
-		<li>platinum</li>
-	</ul> -->
 	<table cellspacing="25" style="width:100%; border: 1px solid black;">
 		<tr>
 			<th style="width:33%">Ranking</th>
