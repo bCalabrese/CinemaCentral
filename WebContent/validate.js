@@ -26,6 +26,8 @@ function validateSignUp() {
 	var firstName = form["firstName"];
 	var lastName = form["lastName"];
 	var age = form["age"];
+	
+	var username = form["username"];
 	var email = form["email"];
 	var pass1 = form["pass1"];
 	var pass2 = form["pass2"];
@@ -53,6 +55,10 @@ function validateSignUp() {
 		window.alert("Please enter your age.");
 		age.focus();
 		return false;		
+	}
+	
+	if (username.value == "") {
+		window.alert("Please enter a username.");
 	}
 	
 	if (email.value == "") {

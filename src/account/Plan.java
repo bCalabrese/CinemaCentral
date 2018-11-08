@@ -1,7 +1,6 @@
 package account;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class login
+ * Servlet implementation class Plan
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Plan")
+public class Plan extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Plan() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,22 +37,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		String email = request.getParameter("email");
-		String pass = request.getParameter("password");
-		
-		if (email.equals("letmein@email.com") && pass.equals("sesame")) { // TODO: validate credentials with database
-			RequestDispatcher rd=request.getRequestDispatcher("landing.html");
-			rd.forward(request, response);
-		}
-		else { // bad credentials
-			out.print("<p style=\"color:red;\">Incorrect e-mail or password. Please verify your credentials</p>");
-			RequestDispatcher rd=request.getRequestDispatcher("index.html");
-			rd.include(request, response);
-		}
-		out.close();
+		//doGet(request, response);
+		RequestDispatcher rd=request.getRequestDispatcher("plan.html");
 	}
 
 }
