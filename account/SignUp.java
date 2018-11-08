@@ -16,39 +16,43 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SignUp")
 public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignUp() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+	public SignUp() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO: check if e-mail is already in database,
 		// otherwise create new user
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
+
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String age = request.getParameter("age");
 		String email = request.getParameter("email");
 		String pass1 = request.getParameter("pass1");
 		String pass2 = request.getParameter("pass2");
-		
+
 		String address1 = request.getParameter("address1");
 		String address2 = request.getParameter("address2");
 		String city = request.getParameter("city");
@@ -58,15 +62,14 @@ public class SignUp extends HttpServlet {
 
 		boolean accountExists = true;
 		// TODO: query database for an account with this email
-		
+
 		if (accountExists) {
 			out.print("<p style=\"color:red;\">Account with this e-mail address already exists!</p>");
-			RequestDispatcher rd=request.getRequestDispatcher("signup.html");
+			RequestDispatcher rd = request.getRequestDispatcher("signup.html");
 			rd.include(request, response);
-		}
-		else { // go back to login 
-			// TODO: put account into database, java bean (?)
-			RequestDispatcher rd=request.getRequestDispatcher("index.html");
+		} else { // go back to login
+					// TODO: put account into database, java bean (?)
+			RequestDispatcher rd = request.getRequestDispatcher("index.html");
 			rd.forward(request, response);
 		}
 	}
