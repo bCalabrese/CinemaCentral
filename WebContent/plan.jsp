@@ -16,7 +16,7 @@
 			<th style="width:33%">Price</th>
 		</tr>
 		<tr>
-			<td style="width:33%; text-align: center ; border: 1px solid black;">Silver</td>
+			<td style="width:33%; text-align: center ; border: 1px solid black;"><button type="button">Silver</button></td>
 			<td style="width:33%; text-align: center">
 				Can only play movies on one screen
 			</td>
