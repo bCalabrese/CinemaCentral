@@ -59,9 +59,9 @@ public class Login extends HttpServlet {
 			response.sendRedirect("landing.jsp");
 		}
 		else { // bad credentials
-			out.print("<p style=\"color:red;\">Incorrect e-mail or password. Please verify your credentials</p>");
+			request.setAttribute("errorMessage", "<strong>Error!</strong> Incorrect e-mail or password. Please verify your credentials.");
 			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-			rd.include(request, response);
+			rd.forward(request, response);
 		}
 		out.close();
 	}

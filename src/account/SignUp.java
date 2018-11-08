@@ -63,9 +63,9 @@ public class SignUp extends HttpServlet {
 		// TODO: query database for an account with this email
 		
 		if (accountExists) {
-			out.print("<p style=\"color:red;\">Account with this e-mail address already exists!</p>");
-			RequestDispatcher rd=request.getRequestDispatcher("signup.html");
-			rd.include(request, response);
+			request.setAttribute("errorMessage", "<strong>Error!</strong> Account with this e-mail address already exists!");
+			RequestDispatcher rd=request.getRequestDispatcher("signup.jsp");
+			rd.forward(request, response);
 		}
 		else { // go back to login 
 			// TODO: put account into database, java bean (?)

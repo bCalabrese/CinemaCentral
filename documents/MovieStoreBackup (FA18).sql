@@ -75,14 +75,12 @@ CREATE TABLE `membership` (
 -- Dumping data for table `membership`
 --
 
-
 INSERT INTO `membership` (`tierName`,`downloadsPerMonth`,`tierMonthlyCost`) VALUES 
- ('Gold',2,'$6.95'),
- ('Platinum',3,'$9.95'),
- ('Silver',1,'$3.95'),
+ ('Gold',4,'$6.95'),
+ ('Platinum',6,'$9.95'),
+ ('Silver',3,'$3.95'),
+ ('None',1,'$0.00'),
  ('test',3,NULL);
-
-
 
 --
 -- Definition of table `member`
@@ -143,8 +141,6 @@ INSERT INTO `member` (`memberID`,`tierName`,`userName`,`firstName`,`lastName`,`a
  (10020,'gold','bobama','Barack','Obama',20,'32 S. State Street','','Chicago','IL','60001','32 S. State Street','','Chicago','IL','60001','(312) 389-4762','bobama@yahoo.com','sesame','2008-01-01',1,'horror'),
  (10041,'Platinum','LASTTEST','LASTTEST','LASTTEST',0,'LASTTEST','LASTTEST','LASTTEST','KY','345345','LASTTEST','LASTTEST','LASTTEST','KY','34543','34534','LASTTEST','LASTTEST',NULL,NULL,'action'),
  (10042,'Platinum','finaltest','finaltest','finaltest',0,'finaltest','finaltest','finaltest','LA','34534','finaltest','finaltest','finaltest','MD','finaltest','34534534534','finaltest','finaltest',NULL,NULL,'action');
-
-
 
 --
 -- Definition of table `movie`
