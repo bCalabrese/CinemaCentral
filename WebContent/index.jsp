@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="userBean" class="account.UserAccount" scope="session"/>
+<jsp:useBean id="userBean" class="bean.UserBean" scope="session"/>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,6 @@
 		<script src="validate.js"></script>
 	</head>
 	<body>
-		<%@ include file="/WEB-INF/shared/header.jspf" %>
 		<%
 			if (userBean.isSessionValid()) {
 				// user is already logged in, send them to the landing page
