@@ -4,18 +4,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<%@ include file="/WEB-INF/shared/resources.jspf" %>
 		<meta charset="ISO-8859-1">
 		<title>Cinema Central</title>
+		<script src="validate.js"></script>
 	</head>
 	<body>
-		<h1>Hello from landing!</h1>
-		<%
-			if (!userBean.isSessionValid()) {
-				// user has not logged in or session has been invalidated
-				response.sendRedirect("index.jsp");
-			}
-		%>
-		
-		
+	<%@ include file="/WEB-INF/shared/landing.jspf" %>
+	<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
 	</body>
 </html>
