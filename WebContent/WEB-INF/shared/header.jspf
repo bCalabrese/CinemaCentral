@@ -1,7 +1,7 @@
- <nav class="navbar navbar-inverse">
+ <nav class="navbar navbar-inverse navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Cinema Central</a>
+      <a class="navbar-brand" href="landing.jsp">Cinema Central</a>
     </div>
     <form class="navbar-form navbar-left" action="/action_page.php">
       <div class="form-group">
@@ -10,7 +10,8 @@
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <ul class="nav navbar-nav">
-      <li><a href="#">Browse</a></li>
+      <li><a href="#">Queue</a></li>
+      <li><a href="#">Favorites</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
