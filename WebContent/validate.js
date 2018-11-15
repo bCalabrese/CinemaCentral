@@ -1,7 +1,6 @@
 /**
  * 
  */
-
 function validateLogin() {
 	var form = document.forms["login"];
 	var email = form["email"]
@@ -114,6 +113,53 @@ function validateSignUp() {
 		window.alert("Please enter a valid phone number.");
 		phoneNumber.focus();
 		return false;		
+	}
+	return true;
+}
+function validatePayment() {
+	var form = document.forms["payment"];
+	var creditCardCCV = form["creditCardCCV"];
+	var creditCardNumber = form["creditCardNumber"];
+	var cardHolderFirstName = form["cardHolderFirstName"];	
+	var cardHolderLastName = form["cardHolderLastName"];
+	var expYear = form["expYear"];
+	var expMonth = form["expMonth"];
+	var ccType = form["ccType"];
+	
+	if (creditCardCCV.value == "") {	
+		window.alert("Please enter your creditCardCCV.");
+		creditCardCCV.focus();
+		return false;
+	}
+	if (creditCardNumber.value == "") {
+		window.alert("Please enter your creditCardNumber.");
+		creditCardNumber.focus();
+		return false;
+	}
+	if (cardHolderFirstName.value == "") {
+		window.alert("Please enter your cardHolderFirstName.");
+		cardHolderFirstName.focus();
+		return false;
+	}
+	if (cardHolderLastName.value == "") {
+		window.alert("Please enter your cardHolderLastName.");
+		cardHolderLastName.focus();
+		return false;
+	}
+	if (expYear.value == "") {
+		window.alert("Please enter your expYear.");
+		expYear.focus();
+		return false;
+	}
+	if (expMonth.value == "") {
+		window.alert("Please enter your expMonth.");
+		expMonth.focus();
+		return false;
+	}
+	if (ccType.value == "") {
+		window.alert("Please enter your ccType.");
+		ccType.focus();
+		return false;
 	}
 	return true;
 }

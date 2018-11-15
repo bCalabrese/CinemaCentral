@@ -42,9 +42,4 @@ public class UserAccount implements Serializable {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
-	
-	
-	
-	
 }

@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			</form>
-			
+
 			<form class="form-horizontal" action="signup.jsp" method="post">
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
