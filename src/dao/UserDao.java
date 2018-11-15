@@ -1,38 +1,14 @@
-package account;
+package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserDao {
-	private final static String username = "root";
-	private final static String password = "sesame";
-	private final static String host = "localhost";
-	
-	private static Connection connect = null;
-	private static PreparedStatement preparedStatement = null;
-	private static ResultSet resultSet = null;
-	
-	private static Connection getConnection() {
-		Connection con = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://" + host + "/moviestoredb?useSSL=false" 
-					+ "&user=" + username 
-					+ "&password=" + password);
-		}
-		catch (Exception e) {
-			System.out.println(e);
-		}
+import account.User;
+import bean.UserBean;
 
-		return con;
-	}
-	
-	public static UserAccount attemptLogin(String email, String pass) {
+public class UserDao extends AbstractDao {
+	public static UserBean attemptLogin(String email, String pass) {
 		try {
 			connect = getConnection();
 			
@@ -46,7 +22,7 @@ public class UserDao {
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				UserAccount user = new UserAccount();
+				UserBean user = new UserBean();
 				user.setMemberID(resultSet.getInt(1));
 				user.setFirstName(resultSet.getString(2));
 				user.setGenrePreference(resultSet.getString(3));
@@ -74,9 +50,11 @@ public class UserDao {
 			resultSet = preparedStatement.executeQuery();
 			
 			if (resultSet.next()) {
+				close();
 				return true;
 			}
 			else {
+				close();
 				return false;
 			}
 		}
@@ -132,21 +110,35 @@ public class UserDao {
 		}
 	}
 	
-	private static void close() {
+	public static User getUserByID(int memberID) {
 		try {
-			if (resultSet != null) {
-				resultSet.close();
-			}
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT * FROM member"
+					+ " WHERE member.memberID=?");
+			preparedStatement.setInt(1, memberID);
 			
-			if (preparedStatement != null) {
-				preparedStatement.close();
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				User user = new User();
+				user.setFirstName(resultSet.getString(4));
+				user.setLastName(resultSet.getString(5));
+				user.setAge(resultSet.getInt(6));
+				user.setAddr1(resultSet.getString(7));
+				user.setAddr2(resultSet.getString(8));
+				user.setCity(resultSet.getString(9));
+				user.setState(resultSet.getString(10));
+				user.setState(resultSet.getString(11));
+				user.setPhone(resultSet.getString(17));
+				close();
+				return user;
 			}
-			
-			if (connect != null) {
-				connect.close();
-			}
-		} catch (Exception e) {
-		
 		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return null;
 	}
 }

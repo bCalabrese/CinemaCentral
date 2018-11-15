@@ -1,0 +1,7 @@
+<jsp:useBean id="userBean" class="bean.UserBean" scope="session"/>
+<%
+	if (!userBean.isSessionValid()) {
+		// user has not logged in or session has been invalidated
+		response.sendRedirect("index.jsp");
+}
+%>

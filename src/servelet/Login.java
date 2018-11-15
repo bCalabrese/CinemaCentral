@@ -1,4 +1,4 @@
-package account;
+package servelet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.UserBean;
+import dao.UserDao;
 
 /**
  * Servlet implementation class login
@@ -49,7 +52,7 @@ public class Login extends HttpServlet {
 		String pass = request.getParameter("password");
 		
 		// Retrive user bean
-		UserAccount user = (UserAccount)request.getSession().getAttribute("userBean");
+		UserBean user = (UserBean)request.getSession().getAttribute("userBean");
 		
 		//
 		if (user == null || user.getMemberID() == -1) {
