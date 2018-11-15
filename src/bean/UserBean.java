@@ -1,9 +1,9 @@
-package account;
+package bean;
 
 import java.io.Serializable;
 
 // User bean
-public class UserAccount implements Serializable {
+public class UserBean implements Serializable {
 	private static final long serialVersionUID = 367L;
 	
 	private int memberID;
@@ -11,7 +11,7 @@ public class UserAccount implements Serializable {
 	private String genrePreference;
 	private String firstName;
 	
-	public UserAccount() {
+	public UserBean() {
 		memberID = -1;
 		sessionValid = false;
 		genrePreference = null;
