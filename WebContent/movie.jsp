@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+
 <!doctype html>
-<html lang="en-US">
+<html>
 	<head>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	  <title>Cinema Central</title>
-	</head>
-	
+		<%@ include file="/WEB-INF/shared/resources.jspf" %>
+	  	<meta charset="ISO-8859-1">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cinema Central</title>
+	</head>	
 	<body>  
+		<%@ include file="/WEB-INF/shared/header.jspf" %>
 		<h1 style="text-align:center;">11:14</h1>
 		<a href ="http://www.imdb.com/video/screenplay/vi2326987033/" target="_blank">	
 			<img src="https://upload.wikimedia.org/wikipedia/en/9/9c/11-14_%282003_film%29_poster.jpg" width="200" height="300"
