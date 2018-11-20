@@ -116,6 +116,7 @@ function validateSignUp() {
 	}
 	return true;
 }
+
 function validatePayment() {
 	var form = document.forms["payment"];
 	var creditCardCCV = form["creditCardCCV"];
@@ -157,7 +158,7 @@ function validatePayment() {
 		return false;
 	}
 	if (ccType.value == "") {
-		window.alert("Please enter your ccType.");
+		window.alert("Please select your ccType.");
 		ccType.focus();
 		return false;
 	}

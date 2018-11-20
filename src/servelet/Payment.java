@@ -1,4 +1,4 @@
-package account;
+package servelet;
 
 
 import java.io.IOException;
@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.UserBean;
+import dao.CardDao;
 
 /**
  * Servlet implementation class Payment
@@ -39,22 +42,21 @@ public class Payment extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO: check if e-mail is already in database,
-		// otherwise create new user
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		int cardID = Integer.parseInt(request.getParameter("cardID"));
-		int memberID = Integer.parseInt(request.getParameter("memberID"));
+		int memberId = ((UserBean)request.getSession().getAttribute("userBean")).getMemberID();
 		int creditCardCCV = Integer.parseInt(request.getParameter("creditCardCCV"));
 		String creditCardNumber = request.getParameter("creditCardNumber");
 		String cardHolderFirstName = request.getParameter("cardHolderFirstName");
 		String cardHolderLastName = request.getParameter("cardHolderLastName");
 		int expYear = Integer.parseInt(request.getParameter("expYear"));
 		int expMonth = Integer.parseInt(request.getParameter("expMonth"));
-		int ccType = Integer.parseInt(request.getParameter("ccType"));
-		CardDao.insertInformation(creditCardCCV, creditCardNumber, cardHolderFirstName, cardHolderLastName, expYear,expMonth,ccType);
+		String ccType = request.getParameter("ccType");
+		CardDao.insertInformation(memberId, creditCardCCV, creditCardNumber, cardHolderFirstName, cardHolderLastName, expYear,expMonth,ccType);
 		response.sendRedirect("index.jsp");
 	}
 }
