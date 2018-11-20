@@ -69,7 +69,7 @@
 					<input type="number" class="form-control" name="phone" maxlength="11" id="phone"/>
 				</div>
 				<button type="submit" class="btn btn-default col-sm-8" name="signup">Submit</button>
-				<button type="reset" class="btn btn-danger col-sm-4" name="signup">Reset</button>
+				<button type="reset" class="btn btn-danger col-sm-4" name="reset">Reset</button>
 			</div>
 		</form>
 	</body>

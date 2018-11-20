@@ -23,14 +23,14 @@
 			<td style="width:33%; text-align: center">$9.99/month</td>
 		</tr>
 		<tr>
-			<td style="width:33%; text-align: center; border: 1px solid black;">Gold</td>
+			<td style="width:33%; text-align: center; border: 1px solid black;"><button type="button">Gold</button></td>
 			<td style="width:33%; text-align: center">
 				Able to play movies on two different screens
 			</td>
 			<td style="width:33%; text-align: center">$11.99/month</td>
 		</tr>
 		<tr>
-			<td style="width:33%; text-align: center; border: 1px solid black;">Platinum</td>
+			<td style="width:33%; text-align: center; border: 1px solid black;"><button type="button">Platinum</button></td>
 			<td style="width:33%; text-align: center">
 				Able to play movies on four different screens
 			</td>
