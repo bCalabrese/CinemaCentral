@@ -20,46 +20,58 @@
   </div>
 </nav> 
 
-<div class = "row">
+<div class = "row" align ="center">
    <h1 align="center">Featured</h1>
-   <div class = "col-sm-6 col-md-3">
+   <div class = "col-sm-6 col-md-3" >
       <a href = "#" class = "img-thumbnail">
-         <img src = "/bootstrap/images/kittens.jpg" alt = "Generic placeholder thumbnail">
+         <img src = "WebContent/WEB-INF/movieImages/anchorman.jpg" width="200" height="300">
+      </a>
+   </div>"
+   
+   <div class = "col-sm-6 col-md-3" >
+      <a href = "#" class = "img-thumbnail">
+         <img src = "/WEB-INF/movieImages/Avengers.jpg" width="200" height="300">
       </a>
    </div>
    
    <div class = "col-sm-6 col-md-3">
-      <a href = "#" class = "img-thumbnail">
-         <img src = "/bootstrap/images/kittens.jpg" alt = "Generic placeholder thumbnail">
+      <a href = "#" class = "img-thumbnail img-responsive">
+         <img src = "/WEB-INF/movieImages/incrediables.jpg" width="200" height="300">
       </a>
    </div>
    
    <div class = "col-sm-6 col-md-3">
-      <a href = "#" class = "img-thumbnail">
-         <img src = "/bootstrap/images/kittens.jpg" alt = "Generic placeholder thumbnail">
+      <a href = "#" class = "img-thumbnail img-responsive">
+         <img src = "/WEB-INF/movieImages/incrediables.jpg" width="200" height="300">
       </a>
    </div>
-   
-</div>
 
-<div class = "row">
+
+<div class = "row" align ="center">
    <h1 align="center">Recommended</h1>
    <div class = "col-sm-6 col-md-3">
       <a href = "#" class = "img-thumbnail">
-         <img src = "#" alt = "Generic placeholder thumbnail">
+         <img src = "/WEB-INF/movieImages/jurassic world.jpg" width="200" height="300">
       </a>
    </div>
    
    <div class = "col-sm-6 col-md-3">
       <a href = "#" class = "img-thumbnail">
-         <img src = "#" alt = "Generic placeholder thumbnail">
+         <img src = "/WEB-INF/movieImages/thesining.jpg" width="200" height="300">
       </a>
    </div>
    
    <div class = "col-sm-6 col-md-3">
       <a href = "#" class = "img-thumbnail">
-         <img src = "#" alt = "Generic placeholder thumbnail">
+         <img src = "/WEB-INF/movieImages/inception.jpg" width="200" height="300">
       </a>
    </div>
+   
+   <div class = "col-sm-6 col-md-3">
+      <a href = "#" class = "img-thumbnail">
+         <img src = "/WEB-INF/movieImages/inception.jpg" width="200" height="300">
+      </a>
+   </div>
+  </div>
    
 </div>
