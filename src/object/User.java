@@ -1,4 +1,4 @@
-package account;
+package object;
 
 public class User {
 	private int memberID;

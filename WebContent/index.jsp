@@ -20,6 +20,7 @@
 		<div class="container">
 			<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
 			<form class="form-horizontal" action="Login" method="post" name="login" onsubmit="return validateLogin()">
+				<h1 class="col-sm-offset-2">Login</h1>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="email">E-Mail:</label>
 					<div class="col-sm-10">

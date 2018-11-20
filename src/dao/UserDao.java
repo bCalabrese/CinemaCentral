@@ -4,11 +4,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import account.User;
 import bean.UserBean;
+import object.User;
 
 public class UserDao extends AbstractDao {
 	public static UserBean attemptLogin(String email, String pass) {
+		UserBean retVal = null;
 		try {
 			connect = getConnection();
 			
@@ -27,9 +28,7 @@ public class UserDao extends AbstractDao {
 				user.setFirstName(resultSet.getString(2));
 				user.setGenrePreference(resultSet.getString(3));
 				user.setSessionValid(true);
-				return user;
-			} else {
-				return null;
+				retVal = user;
 			}
 		}
 		catch (Exception e) {
@@ -38,10 +37,11 @@ public class UserDao extends AbstractDao {
 		finally {
 			close();
 		}
-		return null;
+		return retVal;
 	}
 
 	public static boolean isEmailTaken(String email) {
+		boolean retVal = true;
 		try {
 			connect = getConnection();
 			preparedStatement = connect.prepareStatement("SELECT member.memberID FROM member WHERE member.emailAddress=?");
@@ -49,13 +49,8 @@ public class UserDao extends AbstractDao {
 			
 			resultSet = preparedStatement.executeQuery();
 			
-			if (resultSet.next()) {
-				close();
-				return true;
-			}
-			else {
-				close();
-				return false;
+			if (!resultSet.next()) {
+				retVal = false;
 			}
 		}
 		catch (Exception e) {
@@ -64,12 +59,10 @@ public class UserDao extends AbstractDao {
 		finally {
 			close();
 		}
-		return true;
+		return retVal;
 	}
 	
-	public static void createAccount(
-			String firstName, String lastName, int age, String email, String pass, 
-			String addr1, String addr2,String city, String state, String zipcode, String userName, String phone) {
+	public static void createAccount(User user) {
 		try {
 			connect = getConnection();
 			preparedStatement = connect.prepareStatement("INSERT INTO `member` "
@@ -79,23 +72,23 @@ public class UserDao extends AbstractDao {
 					+ "VALUES "
 					+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setString(1, "none");
-			preparedStatement.setString(2, userName);
-			preparedStatement.setString(3, firstName);
-			preparedStatement.setString(4, lastName);
-			preparedStatement.setInt(5, age);
-			preparedStatement.setString(6, addr1);
-			if (addr2 == null) {
-				preparedStatement.setNull(7, 2);;
+			preparedStatement.setString(2, user.getUserName());
+			preparedStatement.setString(3, user.getFirstName());
+			preparedStatement.setString(4, user.getLastName());
+			preparedStatement.setInt(5, user.getAge());
+			preparedStatement.setString(6, user.getAddr1());
+			if (user.getAddr2() == null) {
+				preparedStatement.setNull(7, 2);
 			}
 			else {
-				preparedStatement.setString(7, addr2);
+				preparedStatement.setString(7, user.getAddr2());
 			}
-			preparedStatement.setString(8, city);
-			preparedStatement.setString(9, state);
-			preparedStatement.setString(10, zipcode);
-			preparedStatement.setString(11, phone);
-			preparedStatement.setString(12, email);
-			preparedStatement.setString(13, pass);
+			preparedStatement.setString(8, user.getCity());
+			preparedStatement.setString(9, user.getState());
+			preparedStatement.setString(10, user.getZipcode());
+			preparedStatement.setString(11, user.getPhone());
+			preparedStatement.setString(12, user.getEmail());
+			preparedStatement.setString(13, user.getPass());
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			preparedStatement.setString(14, format.format(date));
@@ -111,6 +104,7 @@ public class UserDao extends AbstractDao {
 	}
 	
 	public static User getUserByID(int memberID) {
+		User retVal = null;
 		try {
 			connect = getConnection();
 			preparedStatement = connect.prepareStatement("SELECT * FROM member"
@@ -129,8 +123,7 @@ public class UserDao extends AbstractDao {
 				user.setState(resultSet.getString(10));
 				user.setState(resultSet.getString(11));
 				user.setPhone(resultSet.getString(17));
-				close();
-				return user;
+				retVal = user;
 			}
 		}
 		catch (Exception e) {
@@ -139,6 +132,6 @@ public class UserDao extends AbstractDao {
 		finally {
 			close();
 		}
-		return null;
+		return retVal;
 	}
 }

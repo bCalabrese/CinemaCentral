@@ -1,7 +1,6 @@
 package servelet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
+import object.User;
 
 /**
  * Servlet implementation class SignUp
@@ -46,27 +46,23 @@ public class SignUp extends HttpServlet {
 		// TODO: check if e-mail is already in database,
 		// otherwise create new user
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		int age = Integer.parseInt(request.getParameter("age"));
 		
-		String username = request.getParameter("username");
+		User user = new User();
+		user.setFirstName(request.getParameter("firstName"));
+		user.setLastName(request.getParameter("lastName"));
+		user.setAge(Integer.parseInt(request.getParameter("age")));
+		user.setUserName(request.getParameter("username"));
+		user.setEmail(request.getParameter("email"));
+		user.setPass(request.getParameter("pass1"));
+		user.setAddr1(request.getParameter("address1"));
+		user.setAddr2(request.getParameter("address2"));
+		user.setCity(request.getParameter("city"));
+		user.setState(request.getParameter("state"));
+		user.setZipcode(request.getParameter("zipcode"));
+		user.setPhone(request.getParameter("phone"));
 		String email = request.getParameter("email");
-		String pass1 = request.getParameter("pass1");
-		String pass2 = request.getParameter("pass2");
-
-		String address1 = request.getParameter("address1");
-		String address2 = request.getParameter("address2");
-		String city = request.getParameter("city");
-		String state = request.getParameter("state");
-		String zipcode = request.getParameter("zipcode");
-		String phoneNumber = request.getParameter("phone");
-		
+	
 		boolean accountExists = UserDao.isEmailTaken(email);
-		
-		// TODO: query database for an account with this email
 
 		if (accountExists) {
 			request.setAttribute("errorMessage", "<strong>Error!</strong> Account with this e-mail address already exists!");
@@ -75,10 +71,8 @@ public class SignUp extends HttpServlet {
 		}
 		else { // go back to login 
 			// TODO: put account into database, java bean (?)
-			UserDao.createAccount(firstName, lastName, age, email, pass1, address1, 
-					address2, city, state, zipcode, username, phoneNumber);
+			UserDao.createAccount(user);
 			response.sendRedirect("index.jsp");
 		}
 	}
-
 }
