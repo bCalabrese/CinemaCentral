@@ -5,6 +5,7 @@
 <%@ page import="object.Movie" %>
 <%@ page import="dao.MovieDao" %>
 
+
 <%
 ArrayList<Movie> movies = new ArrayList<Movie>();
 String search = request.getParameter("search");
@@ -53,10 +54,25 @@ if (search != null) {
 	<%@ include file="/WEB-INF/shared/header.jspf" %>
 	<%
 	for (Movie m : movies) {
-		out.print("<div>");
-		out.print(m.getMovieID());
+		out.print("<a href=\"movie.jsp?movieid=" + m.getMovieID() + "\"");
+		out.print("<div class=\"row col-sm-12 form-group text-muted\">");
+		out.print("<div class=\"col-sm-offset-1 col-sm-8\">");
+		out.print("<h1>");
 		out.print(m.getMovieTitle());
+		out.print("</h1>");
+		out.print("<h3>");
+		out.print(m.getMovieGenre());
+		out.print("</h3>");
+		out.print("<h3>");
+		out.print(m.getMovieReleaseDate());
+		out.print("</h3>");
+		out.print("<h3>");
+		out.print(m.getMovieRating());
+		out.print("</h3>");
 		out.print("</div>");
+		out.print("<img src=\"images/" + m.getMovieImage() + "\" onerror=\"this.onerror=null;this.src='images/default.png';\" width=\"200\" height=\"300\" class=\"img-responsive col-sm-2\">");
+		out.print("</div>");
+		out.print("</a>");
 	}
 	%>
 </body>
