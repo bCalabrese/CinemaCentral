@@ -52,10 +52,11 @@ if (search != null) {
 <body>
 	<%@ include file="/WEB-INF/shared/header.jspf" %>
 	<%
+	out.print("<h1 class=\"col-sm-offset-1\">Search returned with " + movies.size() + " cinematic features</h1>");
 	for (Movie m : movies) {
 		out.print("<a href=\"movie.jsp?movieid=" + m.getMovieID() + "\"");
-		out.print("<div class=\"row col-sm-12 form-group text-muted\">");
-		out.print("<div class=\"col-sm-offset-1 col-sm-8\">");
+		out.print("<div style=\"background-color:#f4f4f4;\" class=\"col-sm-offset-1 col-sm-10 form-group text-muted\">");
+		out.print("<div class=\"col-sm-8\">");
 		out.print("<h1>");
 		out.print(m.getMovieTitle());
 		out.print("</h1>");
@@ -69,7 +70,7 @@ if (search != null) {
 		out.print(m.getMovieRating());
 		out.print("</h3>");
 		out.print("</div>");
-		out.print("<img src=\"images/" + m.getMovieImage() + "\" onerror=\"this.onerror=null;this.src='images/default.png';\" width=\"200\" height=\"300\" class=\"img-responsive col-sm-2\">");
+		out.print("<img src=\"images/" + m.getMovieImage() + "\" onerror=\"this.onerror=null;this.src='images/default.png';\" width=\"200\" height=\"300\" class=\"img-responsive col-sm-offset-2 col-sm-2\">");
 		out.print("</div>");
 		out.print("</a>");
 	}
