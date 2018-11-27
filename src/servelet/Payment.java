@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.UserBean;
 import dao.CardDao;
+import object.Card;
 
 /**
  * Servlet implementation class Payment
@@ -48,15 +49,23 @@ public class Payment extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		int memberId = ((UserBean)request.getSession().getAttribute("userBean")).getMemberID();
-		int creditCardCCV = Integer.parseInt(request.getParameter("creditCardCCV"));
-		String creditCardNumber = request.getParameter("creditCardNumber");
-		String cardHolderFirstName = request.getParameter("cardHolderFirstName");
-		String cardHolderLastName = request.getParameter("cardHolderLastName");
-		int expYear = Integer.parseInt(request.getParameter("expYear"));
-		int expMonth = Integer.parseInt(request.getParameter("expMonth"));
-		String ccType = request.getParameter("ccType");
-		CardDao.insertInformation(memberId, creditCardCCV, creditCardNumber, cardHolderFirstName, cardHolderLastName, expYear,expMonth,ccType);
-		response.sendRedirect("index.jsp");
+		Card card = new Card();
+		card.setMemberId(((UserBean)request.getSession().getAttribute("userBean")).getMemberID());
+		card.setCreditCardCCV(Integer.parseInt(request.getParameter("creditCardCCV")));
+		card.setCreditCardNumber(request.getParameter("creditCardNumber"));
+		card.setCardHolderFirstName(request.getParameter("cardHolderFirstName"));
+		card.setCardHolderLastName(request.getParameter("cardHolderLastName"));
+		card.setExpYear(Integer.parseInt(request.getParameter("expYear")));
+		card.setExpMonth(Integer.parseInt(request.getParameter("expMonth")));
+		card.setCcType(request.getParameter("ccType"));
+		if(CardDao.doesMemberExist(card.getMemberId()))
+		{
+			CardDao.updateInformation(card);
+		}
+		else
+		{
+			CardDao.insertInformation(card);
+		}
+		response.sendRedirect("Account.jsp");
 	}
 }

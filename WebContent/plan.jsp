@@ -1,41 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%--<jsp:useBean id="userBean" class="account.UserAccount" scope="session"/>--%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/WEB-INF/shared/validatesession.jspf"%>
+<%@ page import="dao.*"%>
+<%@ page import="object.*"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Payment Plan</title>
+<%@ include file="/WEB-INF/shared/resources.jspf"%>
+<meta charset="ISO-8859-1">
+<title>Cinema Central</title>
+<script src="validate.js"></script>
 </head>
 <body>
-	<h1 style="text-align: center">Payment Plan</h1>
-	<table cellspacing="25" style="width:100%; border: 1px solid black;">
-		<tr>
-			<th style="width:33%">Ranking</th>
-			<th style="width:33%">Description</th>
-			<th style="width:33%">Price</th>
-		</tr>
-		<tr>
-			<td style="width:33%; text-align: center ; border: 1px solid black;"><button type="button">Silver</button></td>
-			<td style="width:33%; text-align: center">
-				Can only play movies on one screen
-			</td>
-			<td style="width:33%; text-align: center">$9.99/month</td>
-		</tr>
-		<tr>
-			<td style="width:33%; text-align: center; border: 1px solid black;"><button type="button">Gold</button></td>
-			<td style="width:33%; text-align: center">
-				Able to play movies on two different screens
-			</td>
-			<td style="width:33%; text-align: center">$11.99/month</td>
-		</tr>
-		<tr>
-			<td style="width:33%; text-align: center; border: 1px solid black;"><button type="button">Platinum</button></td>
-			<td style="width:33%; text-align: center">
-				Able to play movies on four different screens
-			</td>
-			<td style="width:33%; text-align: center">$12.99/month</td>
-		</tr>
+	<%
+		Card card = CardDao.getInformation(userBean.getMemberID());
+	%>
+	<%@ include file="/WEB-INF/shared/header.jspf"%>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Ranking</th>
+				<th scope="col">Description</th>
+				<th scope="col">Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">1</th>
+				<td><button type="button">Silver</button></td>
+				<td>Otto</td>
+				<td>@mdo</td>
+			</tr>
+			<tr>
+				<th scope="row">2</th>
+				<td><button type="button">Gold</button></td>
+				<td>Thornton</td>
+				<td>@fat</td>
+			</tr>
+			<tr>
+				<th scope="row">3</th>
+				<td><button type="button">Platinum</button></td>
+				<td>the Bird</td>
+				<td>@twitter</td>
+			</tr>
+		</tbody>
 	</table>
 </body>
 </html>
