@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="userBean" class="account.UserAccount" scope="session"/>
+<%@page import = "object.User" %>
+<%@page import = "dao.UserDao" %>
+<jsp:useBean id="userBean" class="bean.UserBean" scope="session"/>
+
 
 
 <!DOCTYPE html>
@@ -9,13 +12,22 @@
 		<meta charset="ISO-8859-1">
 		<title>Cinema Central</title>
 	</head>
+	
 	<body>
+	<%@ include file="/WEB-INF/shared/header.jspf"%>
+	<%User user = UserDao.getUserByID(userBean.getMemberID()); %>
 <form class="needs-validation" novalidate>
 <h1>Account Details:</h1>
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
+      <input type="text" class="form-control" id="validationCustom01" 
+      placeholder="First name" value="<% 
+      if(userBean.getFirstName() != null){
+    	  out.print(user.getFirstName());
+    	  }
+      else 
+    	  out.print("First Name"); %>">
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationCustom02">Last name</label>
@@ -48,7 +60,7 @@
 				<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
 				<h1>Plan:</h1>
 				<div class="form-group">
-					<label for="planlevel">Plan Level:</label>
+					<label for="planlevel" class="form-control" id="planlevel">Plan Level:</label>
 					<%String myPage = "plan.jsp";%>
 					<input type="button" value="Upgrade Plan" onClick="javascript:window.location='<%= myPage %>';"> 
 				</div>
