@@ -156,4 +156,61 @@ public class MovieDao extends AbstractDao {
 		}
 		return movies;
 	}
+	
+	public static boolean isMovieCheckedOut(int memberID, int movieID) {
+		boolean checkedOut = false;
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT * FROM checkedout WHERE checkedout.memberID = ? AND checkedout.movieID = ?");
+			
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			resultSet = preparedStatement.executeQuery();
+			
+			checkedOut = resultSet.next();
+			
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return checkedOut;
+	}
+	
+	public static void checkOutMovie(int memberID, int movieID) {
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("INSERT INTO checkedout (memberID, movieID) VALUES (?, ?)");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			preparedStatement.executeUpdate();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+	}
+	
+	public static void returnMovie(int memberID, int movieID) {
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("DELETE FROM checkedout WHERE checkedout.memberID = ? AND checkedout.movieID = ?");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			preparedStatement.executeUpdate();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+	}
 }

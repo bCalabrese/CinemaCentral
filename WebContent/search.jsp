@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ include file="/WEB-INF/shared/validatesession.jspf" %>
 <%@ page import="javax.servlet.http.HttpServletRequest" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="object.Movie" %>
