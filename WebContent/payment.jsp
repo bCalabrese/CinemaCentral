@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ include file="/WEB-INF/shared/validatesession.jspf" %>
 <%@ page import="dao.*" %>
 <%@ page import="object.*" %>
 
@@ -12,10 +11,10 @@
 		<script src="validate.js"></script>
 	</head>
 	<body style="background-color:white;">
+		<%@ include file="/WEB-INF/shared/header.jspf" %>
 		<% 
 			Card card = CardDao.getInformation(userBean.getMemberID());
 		%>
-		<%@ include file="/WEB-INF/shared/header.jspf" %>
 		<form action="Payment" method="post" name="payment" onsubmit="return validatePayment()">
 			<div class="col-sm-offset-3 col-sm-6">
 				<%@ include file="/WEB-INF/shared/handleerror.jspf" %>

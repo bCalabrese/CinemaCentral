@@ -258,7 +258,7 @@ CREATE TABLE `viewedmovies` (
 
 
 --
--- Dumping data for table `moviereview`
+-- Dumping data for table `viewedmovies`
 --
 
 INSERT INTO `viewedmovies` (`movieID`, `memberID`, `numViews`) VALUES
@@ -882,4 +882,19 @@ INSERT INTO `queue` (`memberID`,`movieID`,`queueSequence`,`movieTitle`) VALUES
  (10019,44,1,'Carne Trémula'),
  (10019,45,2,'Casino'),
  (10020,9,2,'Aliens');
+
+--
+-- Definition for table `checkedout`
+--
+ 
+ DROP TABLE IF EXISTS `checkedout`;
+CREATE TABLE `checkedout` (
+  `memberID` int(10) unsigned NOT NULL,
+  `movieID` int(10) unsigned NOT NULL,
+  PRIMARY KEY USING BTREE (`memberID`,`movieID`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+ 
+--
+-- Dumping data for table `checkedout`
+--
 

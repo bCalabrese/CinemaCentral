@@ -13,6 +13,16 @@ public class Movie {
 	private Date movieReleaseDate;
 	private String movieRating;
 	
+	public boolean equals(Object movie) {
+		return (this.movieID == ((Movie)movie).movieID);
+	}
+	
+	public int hashCode() {
+		int result = 17;
+		result = 31 * result + movieID;
+		return result;
+	}
+	
 	public int getMovieID() {
 		return movieID;
 	}
