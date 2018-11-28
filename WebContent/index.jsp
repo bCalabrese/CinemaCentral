@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="userBean" class="bean.UserBean" scope="session"/>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +17,7 @@
 				response.sendRedirect("landing.jsp");
 			}
 		%>
+		
 		<!-- <h1>Welcome to Cinema Central! The world's #1 source for downloadable cinematic content!</h1>-->
 		<div class="container">
 			<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
