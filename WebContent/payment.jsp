@@ -43,7 +43,7 @@
 					}
 					else
 					{
-						out.println(card.getCreditCardNumber()); 
+						out.println(card.getCreditCardNumber());
 					}
 					%>>
 				</div>

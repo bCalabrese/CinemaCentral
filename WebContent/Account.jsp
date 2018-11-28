@@ -61,6 +61,5 @@
 					<input type="button" value="Update Billing" onClick="javascript:window.location='<%= paymentPage %>';"> 
 				</div>
 			</div>
-
 	</body>
 </html>
