@@ -31,27 +31,35 @@
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationCustom02">Last name</label>
-      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="
+      <%out.print(user.getLastName());%>">
     </div>
+    
     <div class="col-md-4 mb-3">
       <label for="validationCustomUsername">Username</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" value="<%out.print(user.getUserName());%>">
       </div>
     </div>
   </div>
+  
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom03">City</label>
-      <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+      <input type="text" class="form-control" id="validationCustom03" placeholder="City" value="
+      <%out.print(user.getCity());%>">
     </div>
+    
     <div class="col-md-3 mb-3">
       <label for="validationCustom04">State</label>
-      <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+      <input type="text" class="form-control" id="validationCustom04" placeholder="State" value="
+      <%out.print(user.getState());%>">
     </div>
+    
     <div class="col-md-3 mb-3">
       <label for="validationCustom05">Zip</label>
-      <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+      <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" value="
+      <%out.print(user.getZipcode());%>">
     </div>
   </div>
   <button class="btn btn-primary" type="submit">Save Changes</button>
