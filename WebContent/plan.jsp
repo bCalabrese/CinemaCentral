@@ -1,41 +1,141 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%--<jsp:useBean id="userBean" class="account.UserAccount" scope="session"/>--%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page import="dao.*"%>
+<%@ page import="object.*"%>
+
+<!DOCTYPE html5>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Payment Plan</title>
+<style>
+div.a {
+    border: 2px solid black;
+    outline: 4px solid black;
+}
+</style>
+<%@ include file="/WEB-INF/shared/resources.jspf"%>
+<meta charset="ISO-8859-1">
+<title>Cinema Central</title>
+<script src="validate.js"></script>
 </head>
 <body>
-	<h1 style="text-align: center">Payment Plan</h1>
-	<table cellspacing="25" style="width:100%; border: 1px solid black;">
-		<tr>
-			<th style="width:33%">Ranking</th>
-			<th style="width:33%">Description</th>
-			<th style="width:33%">Price</th>
-		</tr>
-		<tr>
-			<td style="width:33%; text-align: center ; border: 1px solid black;"><button type="button">Silver</button></td>
-			<td style="width:33%; text-align: center">
-				Can only play movies on one screen
-			</td>
-			<td style="width:33%; text-align: center">$9.99/month</td>
-		</tr>
-		<tr>
-			<td style="width:33%; text-align: center; border: 1px solid black;"><button type="button">Gold</button></td>
-			<td style="width:33%; text-align: center">
-				Able to play movies on two different screens
-			</td>
-			<td style="width:33%; text-align: center">$11.99/month</td>
-		</tr>
-		<tr>
-			<td style="width:33%; text-align: center; border: 1px solid black;"><button type="button">Platinum</button></td>
-			<td style="width:33%; text-align: center">
-				Able to play movies on four different screens
-			</td>
-			<td style="width:33%; text-align: center">$12.99/month</td>
-		</tr>
-	</table>
+	<%@ include file="/WEB-INF/shared/header.jspf"%>
+	<h1 align="center">Payment Options	</h1>
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("silver")) 
+		{
+			if(CardDao.doesMemberExist(userBean.getMemberID()))
+			{
+				out.print("<a href=\"index.jsp"+ "\"");
+			}
+			else
+			{
+				out.print("<a href=\"payment.jsp"+ "\"");
+			} 
+		}
+	%>
+	<div style="background-color: #C0C0C0"class="col-sm-offset-1 col-sm-10 form-group text-muted">
+	<%
+		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("silver")) 
+		{
+			if(CardDao.doesMemberExist(userBean.getMemberID()))
+			{
+				out.print("<div class=\"a\" class=\"col-sm-12\">");
+			}
+			else
+			{
+				out.print("<div class=\"col-sm-12\">");
+			} 
+		}
+	%>
+			<h1 align="center">Silver</h1>
+			<h3 align="center">Downloads Per Month: 1</h3>
+			<h3 align="center">Monthly Cost: $3.95</h3>
+		</div>
+	</div>
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("silver")) 
+		{
+			out.print("</a>");
+		}
+	%>
+	
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("gold")) 
+		{
+			if(CardDao.doesMemberExist(userBean.getMemberID()))
+			{
+				out.print("<a href=\"index.jsp"+ "\"");
+			}
+			else
+			{
+				out.print("<a href=\"payment.jsp"+ "\"");
+			} 
+		}
+	%>
+	<div style="background-color: #FFD700" class="col-sm-offset-1 col-sm-10 form-group text-muted">
+	<%
+		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("gold")) 
+		{
+			if(CardDao.doesMemberExist(userBean.getMemberID()))
+			{
+				out.print("<div class=\"a\" class=\"col-sm-12\">");
+			}
+			else
+			{
+				out.print("<div class=\"col-sm-12\">");
+			} 
+		}
+	%>
+			<h1 align="center">Gold</h1>
+			<h3 align="center">Downloads Per Month: 2</h3>
+			<h3 align="center">Monthly Cost: $6.95</h3>
+		</div>
+	</div>
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("gold")) 
+		{
+			out.print("</a>");
+		}
+	%>
+	
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("platinum")) 
+		{
+			if(CardDao.doesMemberExist(userBean.getMemberID()))
+			{
+				out.print("<a href=\"index.jsp"+ "\"");
+			}
+			else
+			{
+				out.print("<a href=\"payment.jsp"+ "\"");
+			} 
+		}
+	%>
+	<div style="background-color: #E5E4E2" class="col-sm-offset-1 col-sm-10 form-group text-muted">
+	<%
+		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("platinum")) 
+		{
+			if(CardDao.doesMemberExist(userBean.getMemberID()))
+			{
+				out.print("<div class=\"a\" class=\"col-sm-12\">");
+			}
+			else
+			{
+				out.print("<div class=\"col-sm-12\">");
+			} 
+		}
+	%>
+			<h1 align="center">Platinum</h1>
+			<h3 align="center">Downloads Per Month: 3</h3>
+			<h3 align="center">Monthly Cost: $9.95</h3>
+		</div>
+	</div>
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("platinum")) 
+		{
+			out.print("</a>");
+		}
+	%>
 </body>
 </html>

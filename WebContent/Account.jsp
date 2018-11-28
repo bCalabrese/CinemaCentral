@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import = "object.User" %>
 <%@page import = "dao.UserDao" %>
-<jsp:useBean id="userBean" class="bean.UserBean" scope="session"/>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -82,6 +79,5 @@
 					<input type="button" value="Update Billing" onClick="javascript:window.location='<%= paymentPage %>';"> 
 				</div>
 			</div>
-
 	</body>
 </html>
