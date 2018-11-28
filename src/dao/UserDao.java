@@ -107,22 +107,26 @@ public class UserDao extends AbstractDao {
 		User retVal = null;
 		try {
 			connect = getConnection();
-			preparedStatement = connect.prepareStatement("SELECT * FROM member"
+			preparedStatement = connect.prepareStatement("SELECT"
+					+ " member.firstName, member.lastName, member.age, member.billAddressLine1,"
+					+ " member.billAddressLine2, member.billCity, member.billState, member.billZipCode, member.phoneNumber, member.userName"
+					+ " FROM member"
 					+ " WHERE member.memberID=?");
 			preparedStatement.setInt(1, memberID);
 			
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				User user = new User();
-				user.setFirstName(resultSet.getString(4));
-				user.setLastName(resultSet.getString(5));
-				user.setAge(resultSet.getInt(6));
-				user.setAddr1(resultSet.getString(7));
-				user.setAddr2(resultSet.getString(8));
-				user.setCity(resultSet.getString(9));
-				user.setState(resultSet.getString(10));
-				user.setState(resultSet.getString(11));
-				user.setPhone(resultSet.getString(17));
+				user.setFirstName(resultSet.getString(1));
+				user.setLastName(resultSet.getString(2));
+				user.setAge(resultSet.getInt(3));
+				user.setAddr1(resultSet.getString(4));
+				user.setAddr2(resultSet.getString(5));
+				user.setCity(resultSet.getString(6));
+				user.setState(resultSet.getString(7));
+				user.setZipcode(resultSet.getString(8));
+				user.setPhone(resultSet.getString(9));
+				user.setUserName(resultSet.getString(10));
 				retVal = user;
 			}
 		}

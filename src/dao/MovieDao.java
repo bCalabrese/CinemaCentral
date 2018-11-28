@@ -188,6 +188,14 @@ public class MovieDao extends AbstractDao {
 			preparedStatement.setInt(1, memberID);
 			preparedStatement.setInt(2, movieID);
 			preparedStatement.executeUpdate();
+			close();
+			if (!MovieDao.hasUserViewedMovie(memberID, movieID)) {
+				connect = getConnection();
+				preparedStatement = connect.prepareStatement("INSERT INTO viewedmovies (memberID, movieID) VALUES (?, ?)");
+				preparedStatement.setInt(1, memberID);
+				preparedStatement.setInt(2, movieID);
+				preparedStatement.executeUpdate();
+			}
 		}
 		catch (Exception e) {
 			System.out.println(e);
@@ -233,5 +241,83 @@ public class MovieDao extends AbstractDao {
 			close();
 		}
 		return count;
+	}
+	
+	public static String getDirectorByID(int movieID) {
+		String director = "";
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT person.personFirstName, person.personLastName FROM movieperson "
+					+ "INNER JOIN person ON movieperson.personID = person.personID "
+					+ "WHERE movieperson.movieID = ? AND movieperson.director = 1;");
+			preparedStatement.setInt(1, movieID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				director = resultSet.getString(1) + " " + resultSet.getString(2);
+			}
+			else {
+				director = "Unknown";
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return director;
+	}
+	
+	public static String getActorsByID(int movieID) {
+		String actors = "";
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT person.personFirstName, person.personLastName FROM movieperson "
+					+ "INNER JOIN person ON movieperson.personID = person.personID "
+					+ "WHERE movieperson.movieID = ? AND movieperson.actor = 1;");
+			preparedStatement.setInt(1, movieID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				actors = resultSet.getString(1) + " " + resultSet.getString(2);
+			}
+			else {
+				actors = "Unknown";
+			}
+			
+			while (resultSet.next()) {
+				actors += ", " + resultSet.getString(1) + " " + resultSet.getString(2);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return actors;
+	}
+	
+	public static boolean hasUserViewedMovie(int memberID, int movieID) {
+		boolean hasViewed = false;
+		try {
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT * FROM viewedmovies WHERE viewedmovies.memberID = ? AND viewedmovies.movieID = ?");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				hasViewed = true;
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return hasViewed;
 	}
 }
