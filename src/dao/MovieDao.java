@@ -213,4 +213,25 @@ public class MovieDao extends AbstractDao {
 			close();
 		}
 	}
+	
+	public static int numCheckedOutMovies(int memberID) {
+		int count = 0;
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT COUNT(*) FROM checkedout WHERE checkedout.memberID = ?");
+			preparedStatement.setInt(1, memberID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return count;
+	}
 }

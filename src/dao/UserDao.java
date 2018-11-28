@@ -32,7 +32,7 @@ public class UserDao extends AbstractDao {
 			}
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			System.out.println("UserDao::attemptLogin: " + e);
 		}
 		finally {
 			close();
@@ -54,7 +54,7 @@ public class UserDao extends AbstractDao {
 			}
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			System.out.println("UserDao::isEmailTaken: " + e);
 		}
 		finally {
 			close();
@@ -96,7 +96,7 @@ public class UserDao extends AbstractDao {
 			preparedStatement.executeUpdate();
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			System.out.println("UserDao::createAccount: " + e);
 		}
 		finally {
 			close();
@@ -127,11 +127,36 @@ public class UserDao extends AbstractDao {
 			}
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			System.out.println("UserDao::getUserByID: " + e);
 		}
 		finally {
 			close();
 		}
 		return retVal;
+	}
+	
+	public static int getNumMoviesByID(int memberID) {
+		int numMovies = 0;
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT membership.downloadsPerMonth FROM member "
+					+ "INNER JOIN "
+					+ "membership ON member.memberID=? AND member.tierName=membership.tierName");
+			preparedStatement.setInt(1, memberID);
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				numMovies = resultSet.getInt(1);
+			}
+		}
+		catch (Exception e) {
+			System.out.println("UserDao::getNumMoviesByID: " + e);
+		}
+		finally {
+			close();
+		}
+		return numMovies;
 	}
 }
