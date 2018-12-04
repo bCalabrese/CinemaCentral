@@ -58,7 +58,7 @@ public class Payment extends HttpServlet {
 		card.setExpYear(Integer.parseInt(request.getParameter("expYear")));
 		card.setExpMonth(Integer.parseInt(request.getParameter("expMonth")));
 		card.setCcType(request.getParameter("ccType"));
-		if(CardDao.doesMemberExist(card.getMemberId()))
+		if(CardDao.doesMemberhavePayment(card.getMemberId()))
 		{
 			CardDao.updateInformation(card);
 		}

@@ -103,6 +103,32 @@ public class UserDao extends AbstractDao {
 		}
 	}
 	
+	public static void updateAccount(int memberID, User user) {
+        try {
+            connect = getConnection();
+            preparedStatement = connect.prepareStatement("UPDATE member "
+                    + "SET member.firstName=?, member.lastName=?, member.userName=?, "
+                    + "member.billAddressLine1=?, member.billAddressLine2=?, member.billCity=?, member.billState=?, member.billZipCode=? "
+                    + "WHERE member.memberID=?");
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getUserName());
+            preparedStatement.setString(4, user.getAddr1());
+            preparedStatement.setString(5, user.getAddr1());
+            preparedStatement.setString(6, user.getCity());
+            preparedStatement.setString(7, user.getState());
+            preparedStatement.setString(8, user.getZipcode());
+            preparedStatement.setInt(9, memberID);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        finally {
+            close();
+        }
+    }
+	
 	public static User getUserByID(int memberID) {
 		User retVal = null;
 		try {

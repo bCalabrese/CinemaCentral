@@ -53,7 +53,27 @@ public class CardDao extends AbstractDao
 		}
 		return retVal;
 	}
-	
+	public static boolean doesMemberhavePayment(int memberId) {
+		boolean retVal = false;
+		try {
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT card.memberID from card WHERE card.memberID= ?");
+			preparedStatement.setInt(1, memberId);
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				retVal = true;
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return retVal;
+	}
 	public static Card getInformation(int memberId) {
 		Card retVal = null;
 		try 
@@ -125,7 +145,7 @@ public class CardDao extends AbstractDao
 		{
 			connect = getConnection();
 			preparedStatement = connect.prepareStatement("UPDATE card "
-					+ "SET creditCardCCV=?, creditCardNumber=?, CardHolderFirstName=?, CardHolderLastName=?, expYear=?, expMonth=?, ccType=?"
+					+ "SET creditCardCCV=?, creditCardNumber=?, CardHolderFirstName=?, CardHolderLastName=?, expYear=?, expMonth=?, ccType=? "
 					+ "WHERE card.memberID=?");
 			preparedStatement.setInt(1, card.getCreditCardCCV());
 			preparedStatement.setString(2, card.getCreditCardNumber());
@@ -135,6 +155,27 @@ public class CardDao extends AbstractDao
 			preparedStatement.setInt(6, card.getExpMonth());
 			preparedStatement.setString(7, card.getCcType());
 			preparedStatement.setInt(8, card.getMemberId());
+			preparedStatement.executeUpdate();
+		}
+		catch (Exception e) 
+		{
+			System.out.println(e);
+		}
+		finally 
+		{
+			close();
+		}
+	}
+	public static void updateMember(String memberShip, int memberId)
+	{
+		try 
+		{
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("UPDATE member "
+					+ "SET tierName=?"
+					+ "WHERE member.memberID=?");
+			preparedStatement.setString(1, memberShip);
+			preparedStatement.setInt(2, memberId);
 			preparedStatement.executeUpdate();
 		}
 		catch (Exception e) 

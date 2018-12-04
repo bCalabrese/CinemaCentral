@@ -234,4 +234,92 @@ public class MovieDao extends AbstractDao {
 		}
 		return count;
 	}
+	
+	public static ArrayList<Movie> getMovieSFromFavorites(int memberId) {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		ArrayList<Integer> movietemp = new ArrayList<Integer>();
+
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT"
+					+ " favorite.movieID"
+					+ " FROM favorite"
+					+ " WHERE favorite.memberID=?");
+			
+			preparedStatement.setInt(1, memberId);
+			
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) 
+			{
+				movietemp.add(resultSet.getInt(1));
+			}
+			for (Integer m : movietemp) 
+			{
+				Movie movie = new Movie();
+				movie.setMovieID(m);
+				Movie temp = getMovieByID(m);
+				movie.setMovieGenre(temp.getMovieGenre());
+				movie.setMovieTitle(temp.getMovieTitle());
+				movie.setMovieDescription(temp.getMovieDescription());
+				movie.setMovieReleaseYear(temp.getMovieReleaseYear());
+				movie.setMovieImage(temp.getMovieImage());
+				movie.setMovieTrailer(temp.getMovieTrailer());
+				movie.setMovieReleaseDate(temp.getMovieReleaseDate());
+				movie.setMovieRating(temp.getMovieRating());
+				movies.add(movie);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return movies;
+	}
+	public static ArrayList<Movie> getMovieSFromQueue(int memberId) {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		ArrayList<Integer> movietemp = new ArrayList<Integer>();
+
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT"
+					+ " queue.movieID"
+					+ " FROM queue"
+					+ " WHERE queue.memberID=?"
+					+ " ORDER BY queueSequence");
+			
+			preparedStatement.setInt(1, memberId);
+			
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) 
+			{
+				movietemp.add(resultSet.getInt(1));
+			}
+			for (Integer m : movietemp) 
+			{
+				Movie movie = new Movie();
+				movie.setMovieID(m);
+				Movie temp = getMovieByID(m);
+				movie.setMovieGenre(temp.getMovieGenre());
+				movie.setMovieTitle(temp.getMovieTitle());
+				movie.setMovieDescription(temp.getMovieDescription());
+				movie.setMovieReleaseYear(temp.getMovieReleaseYear());
+				movie.setMovieImage(temp.getMovieImage());
+				movie.setMovieTrailer(temp.getMovieTrailer());
+				movie.setMovieReleaseDate(temp.getMovieReleaseDate());
+				movie.setMovieRating(temp.getMovieRating());
+				movies.add(movie);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return movies;
+	}
 }

@@ -3,12 +3,31 @@
 
 <%@ page import="dao.*"%>
 <%@ page import="object.*"%>
+<%@ page import="servelet.*"%>
 
 <!DOCTYPE html5>
 <html>
 <head>
 <style>
-div.a {
+.color {
+	background-color: silver;
+	border: 4px solid black;
+    outline: 4px solid black;
+}
+
+.coloring {
+	background-color: gold;
+    border: 2px solid black;
+    outline: 4px solid black;
+}
+
+.colorings {
+	background-color: E5E4E2;
+    border: 2px solid black;
+    outline: 4px solid black;
+}
+.colors {
+	background-color: CCFFCC;
     border: 2px solid black;
     outline: 4px solid black;
 }
@@ -24,75 +43,54 @@ div.a {
 	<%
 		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("silver")) 
 		{
-			if(CardDao.doesMemberExist(userBean.getMemberID()))
-			{
-				out.print("<a href=\"index.jsp"+ "\"");
-			}
-			else
-			{
-				out.print("<a href=\"payment.jsp"+ "\"");
-			} 
+			out.print("<a href=\"Plan?membership=silver\"");
 		}
 	%>
-	<div style="background-color: #C0C0C0"class="col-sm-offset-1 col-sm-10 form-group text-muted">
 	<%
 		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("silver")) 
 		{
-			if(CardDao.doesMemberExist(userBean.getMemberID()))
-			{
-				out.print("<div class=\"a\" class=\"col-sm-12\">");
-			}
-			else
-			{
-				out.print("<div class=\"col-sm-12\">");
-			} 
+			out.print("<div class=\"color col-sm-offset-1 col-sm-10 form-group text-muted\">");
 		}
+		else
+		{
+			out.print("<div style=\"background-color: silver\" class=\"col-sm-offset-1 col-sm-10 form-group text-muted\">");
+		} 
 	%>
+			<div class="col-sm-12">
 			<h1 align="center">Silver</h1>
-			<h3 align="center">Downloads Per Month: 1</h3>
+			<h3 align="center">Downloads Per Month: 3</h3>
 			<h3 align="center">Monthly Cost: $3.95</h3>
 		</div>
-	</div>
 	<%
+		out.print("</div>");
 		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("silver")) 
 		{
 			out.print("</a>");
 		}
 	%>
 	
+
 	<%
 		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("gold")) 
 		{
-			if(CardDao.doesMemberExist(userBean.getMemberID()))
-			{
-				out.print("<a href=\"index.jsp"+ "\"");
-			}
-			else
-			{
-				out.print("<a href=\"payment.jsp"+ "\"");
-			} 
+			out.print("<a href=\"Plan?membership=gold\"");
 		}
-	%>
-	<div style="background-color: #FFD700" class="col-sm-offset-1 col-sm-10 form-group text-muted">
-	<%
 		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("gold")) 
 		{
-			if(CardDao.doesMemberExist(userBean.getMemberID()))
-			{
-				out.print("<div class=\"a\" class=\"col-sm-12\">");
-			}
-			else
-			{
-				out.print("<div class=\"col-sm-12\">");
-			} 
+			out.print("<div class=\"coloring col-sm-offset-1 col-sm-10 form-group text-muted\">");
 		}
+		else
+		{
+			out.print("<div style=\"background-color: gold\" class=\"col-sm-offset-1 col-sm-10 form-group text-muted\">");
+		} 
 	%>
+			<div class="col-sm-12">
 			<h1 align="center">Gold</h1>
-			<h3 align="center">Downloads Per Month: 2</h3>
+			<h3 align="center">Downloads Per Month: 4</h3>
 			<h3 align="center">Monthly Cost: $6.95</h3>
 		</div>
-	</div>
 	<%
+		out.print("</div>");
 		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("gold")) 
 		{
 			out.print("</a>");
@@ -102,37 +100,52 @@ div.a {
 	<%
 		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("platinum")) 
 		{
-			if(CardDao.doesMemberExist(userBean.getMemberID()))
-			{
-				out.print("<a href=\"index.jsp"+ "\"");
-			}
-			else
-			{
-				out.print("<a href=\"payment.jsp"+ "\"");
-			} 
+			out.print("<a href=\"Plan?membership=platinum\"");
 		}
-	%>
-	<div style="background-color: #E5E4E2" class="col-sm-offset-1 col-sm-10 form-group text-muted">
-	<%
 		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("platinum")) 
 		{
-			if(CardDao.doesMemberExist(userBean.getMemberID()))
-			{
-				out.print("<div class=\"a\" class=\"col-sm-12\">");
-			}
-			else
-			{
-				out.print("<div class=\"col-sm-12\">");
-			} 
+			out.print("<div class=\"colorings col-sm-offset-1 col-sm-10 form-group text-muted\">");
 		}
+		else
+		{
+			out.print("<div style=\"background-color: E5E4E2\" class=\"col-sm-offset-1 col-sm-10 form-group text-muted\">");
+		} 
 	%>
+			<div class="col-sm-12">
 			<h1 align="center">Platinum</h1>
-			<h3 align="center">Downloads Per Month: 3</h3>
+			<h3 align="center">Downloads Per Month: 6</h3>
 			<h3 align="center">Monthly Cost: $9.95</h3>
 		</div>
-	</div>
 	<%
+		out.print("</div>");
 		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("platinum")) 
+		{
+			out.print("</a>");
+		}
+	%>
+	
+	<%
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("none")) 
+		{
+			out.print("<a href=\"Plan?membership=none\"");
+		}
+		if (CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("none")) 
+		{
+			out.print("<div class=\"colors col-sm-offset-1 col-sm-10 form-group text-muted\">");
+		}
+		else
+		{
+			out.print("<div style=\"background-color: #CCFFCC\" class=\"col-sm-offset-1 col-sm-10 form-group text-muted\">");
+		} 
+	%>
+			<div class="col-sm-12">
+			<h1 align="center">None</h1>
+			<h3 align="center">Downloads Per Month: 1</h3>
+			<h3 align="center">Monthly Cost: Free</h3>
+		</div>
+	<%
+		out.print("</div>");
+		if (!CardDao.getTierName(userBean.getMemberID()).toLowerCase().equals("none")) 
 		{
 			out.print("</a>");
 		}

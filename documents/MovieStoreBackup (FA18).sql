@@ -897,4 +897,35 @@ CREATE TABLE `checkedout` (
 --
 -- Dumping data for table `checkedout`
 --
+DROP TABLE IF EXISTS `favorite`;
+CREATE TABLE `favorite` (
+  `memberID` int(10) unsigned NOT NULL,
+  `movieID` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  USING BTREE (`memberID`,`movieID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `favorite` (`memberID`,`movieID`) VALUES 
+ (10001,8),
+ (10002,22),
+ (10002,27),
+ (10002,31),
+ (10002,33),
+ (10003,5),
+ (10003,6),
+ (10003,7),
+ (10003,8),
+ (10003,15),
+ (10003,16),
+ (10003,17),
+ (10003,18),
+ (10003,19),
+ (10004,6);
+
+SELECT favorite.movieID FROM favorite
+WHERE favorite.memberID = 10002;
+
+SELECT * FROM movie;
+
+SELECT * FROM queue
+WHERE queue.memberID = 10002
+ORDER BY queueSequence;

@@ -22,7 +22,7 @@
 				<div class="form-group">
 					<label for="creditCardCCV">creditCardCCV:</label>
 					<input type="text" pattern="[0-9]{5}" title="5 digit CCV Number" class="form-control" name="creditCardCCV" id="creditCardCCV"
-					value = <% 
+					value = "<%
 					if (!CardDao.doesMemberExist(userBean.getMemberID()))
 					{
 						out.println("");
@@ -31,12 +31,12 @@
 					{
 						out.println(card.getCreditCardCCV()); 
 					}
-					%>>
+					%>">
 				</div>
 				<div class="form-group">
 					<label for="creditCardNumber">creditCardNumber:</label>
 					<input type="text" pattern="[0-9]{16}" title="16 digit Credit Card Number" class="form-control" name="creditCardNumber" id="creditCardNumber" maxlength="16"
-					value = <% 
+					value = "<% 
 					if (!CardDao.doesMemberExist(userBean.getMemberID()))
 					{
 						out.println("");
@@ -45,7 +45,7 @@
 					{
 						out.println(card.getCreditCardNumber());
 					}
-					%>>
+					%>">
 				</div>
 				<div class="form-group">
 					<label for="cardHolderFirstName">cardHolderFirstName:</label>
