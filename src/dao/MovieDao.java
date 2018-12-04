@@ -472,3 +472,4 @@ public class MovieDao extends AbstractDao {
 		}
 		return movies;
 	}
+}
