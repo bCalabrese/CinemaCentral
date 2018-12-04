@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import object.Movie;
 
@@ -233,5 +234,74 @@ public class MovieDao extends AbstractDao {
 			close();
 		}
 		return count;
+	}
+	
+	
+	public static ArrayList<Movie> getFeaturedMovies() {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		try {
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT "
+			+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased,"
+			+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
+			+ "FROM movie WHERE movie.movieID = 1 OR movie.movieID = 2 OR movie.movieID = 3 OR movie.movieID = 4 OR movie.movieID = 5; ");			
+			
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Movie movie = new Movie();
+				movie.setMovieID(resultSet.getInt(1));
+				movie.setMovieGenre(resultSet.getString(2));
+				movie.setMovieTitle(resultSet.getString(3));
+				movie.setMovieDescription(resultSet.getString(4));
+				movie.setMovieReleaseYear(resultSet.getInt(5));
+				movie.setMovieImage(resultSet.getString(6));
+				movie.setMovieTrailer(resultSet.getString(7));
+				movie.setMovieReleaseDate(resultSet.getDate(8));
+				movie.setMovieRating(resultSet.getString(9));
+				movies.add(movie);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return movies;
+	}
+	public static ArrayList<Movie> getRecommendedMovies() {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		Random rand = new Random();
+		try {
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT "
+			+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased,"
+			+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
+			+ "FROM movie WHERE movie.movieID = " + rand.nextInt(54)  + " OR movie.movieID = " 
+			+ (rand.nextInt(51) + 1) + " OR movie.movieID = " + (rand.nextInt(51) + 1) + " OR movie.movieID = "
+			+ (rand.nextInt(51) + 1) + " OR movie.movieID = " + (rand.nextInt(51) + 1)  + " ;");		
+			
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Movie movie = new Movie();
+				movie.setMovieID(resultSet.getInt(1));
+				movie.setMovieGenre(resultSet.getString(2));
+				movie.setMovieTitle(resultSet.getString(3));
+				movie.setMovieDescription(resultSet.getString(4));
+				movie.setMovieReleaseYear(resultSet.getInt(5));
+				movie.setMovieImage(resultSet.getString(6));
+				movie.setMovieTrailer(resultSet.getString(7));
+				movie.setMovieReleaseDate(resultSet.getDate(8));
+				movie.setMovieRating(resultSet.getString(9));
+				movies.add(movie);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return movies;
 	}
 }
