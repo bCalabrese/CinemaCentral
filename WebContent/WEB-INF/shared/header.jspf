@@ -6,7 +6,7 @@
     </div>
     <form class="navbar-form navbar-left nav-item dropdown" action="search.jsp">
    		<label style="color:#cccccc"> Search By:&nbsp;</label>
- 		<input type="checkbox" name="title" id="title" class="form-check-input" value="title"> 
+ 		<input type="checkbox" name="title" id="title" class="form-check-input" value="title" checked> 
 		<label style="color:#999999" class="form-check-label" for="title">Title</label>
   		<input type="checkbox" name="actor" id="actor" class="form-check-input" value="actor">
   		<label style="color:#999999" class="form-check-label" style="color:white" for="actor">Actor</label>

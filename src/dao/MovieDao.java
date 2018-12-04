@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 
 import object.Movie;
+import object.MovieReview;
 
 public class MovieDao extends AbstractDao {
 	public static Movie getMovieByID(int movieID) {
@@ -188,6 +189,14 @@ public class MovieDao extends AbstractDao {
 			preparedStatement.setInt(1, memberID);
 			preparedStatement.setInt(2, movieID);
 			preparedStatement.executeUpdate();
+			close();
+			if (!MovieDao.hasUserViewedMovie(memberID, movieID)) {
+				connect = getConnection();
+				preparedStatement = connect.prepareStatement("INSERT INTO viewedmovies (memberID, movieID) VALUES (?, ?)");
+				preparedStatement.setInt(1, memberID);
+				preparedStatement.setInt(2, movieID);
+				preparedStatement.executeUpdate();
+			}
 		}
 		catch (Exception e) {
 			System.out.println(e);
@@ -278,6 +287,32 @@ public class MovieDao extends AbstractDao {
 		}
 		return movies;
 	}
+	public static String getDirectorByID(int movieID) {
+		String director = "";
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT person.personFirstName, person.personLastName FROM movieperson "
+					+ "INNER JOIN person ON movieperson.personID = person.personID "
+					+ "WHERE movieperson.movieID = ? AND movieperson.director = 1;");
+			preparedStatement.setInt(1, movieID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				director = resultSet.getString(1) + " " + resultSet.getString(2);
+			}
+			else {
+				director = "Unknown";
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return director;
+	}
+	
 	public static ArrayList<Movie> getMovieSFromQueue(int memberId) {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		ArrayList<Integer> movietemp = new ArrayList<Integer>();
@@ -322,4 +357,84 @@ public class MovieDao extends AbstractDao {
 		}
 		return movies;
 	}
-}
+
+	public static ArrayList<MovieReview> getReviewsByMovie(int movieID) {
+			ArrayList<MovieReview> reviews = new ArrayList<MovieReview>();
+			try {
+				connect = getConnection();
+				preparedStatement = connect.prepareStatement("SELECT member.userName, moviereview.rating, moviereview.reviewText "
+						+ "FROM moviereview "
+						+ "INNER JOIN member ON member.memberID = moviereview.memberID "
+						+ "WHERE moviereview.movieID = ?;");
+				preparedStatement.setInt(1,  movieID);
+				resultSet = preparedStatement.executeQuery();
+				
+				while (resultSet.next()) {
+					MovieReview review = new MovieReview();
+					review.setReviewText(resultSet.getString(3));
+					review.setRating(resultSet.getInt(2));
+					review.setName(resultSet.getString(1));
+					reviews.add(review);	
+				}
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+			finally {
+				close();
+			}			
+			return reviews;
+		}
+	}
+
+	public static String getActorsByID(int movieID) {
+		String actors = "";
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("SELECT person.personFirstName, person.personLastName FROM movieperson "
+					+ "INNER JOIN person ON movieperson.personID = person.personID "
+					+ "WHERE movieperson.movieID = ? AND movieperson.actor = 1;");
+			preparedStatement.setInt(1, movieID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				actors = resultSet.getString(1) + " " + resultSet.getString(2);
+			}
+			else {
+				actors = "Unknown";
+			}
+			
+			while (resultSet.next()) {
+				actors += ", " + resultSet.getString(1) + " " + resultSet.getString(2);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return actors;
+	}
+	
+	public static boolean hasUserViewedMovie(int memberID, int movieID) {
+		boolean hasViewed = false;
+		try {
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT * FROM viewedmovies WHERE viewedmovies.memberID = ? AND viewedmovies.movieID = ?");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				hasViewed = true;
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return hasViewed;
+	}

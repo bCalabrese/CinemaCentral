@@ -190,7 +190,7 @@ INSERT INTO `movie` (`movieID`,`movieGenre`,`movieTitle`,`movieDescription`,`mov
  (23,'Drama','Autumn in New York','Romantic 1 about an aging playboy who falls for a sweet but terminally ill young woman.','2000','AutumnInNewYork.jpg','http://www.youtube.com/watch?v=zACckn8ie-8','2000-08-11','PG-13'),
  (24,'Drama','Awakenings','The victims of an encephalitis epidemic many years ago have been catatonic ever since but now a new drug offers the prospect of reviving them.','1990','Awakenings.jpg','http://www.imdb.com/video/screenplay/vi1387790617/','1990-12-20','PG-13'),
  (25,'Drama','Babel','Tragedy strikes a married couple on vacation in the Moroccan desert touching off an interlocking story involving four different families.','2006','Babel.jpg','http://www.imdb.com/video/screenplay/vi2058879257/','2006-11-10','R'),
- (26,'Drama','Bang Bang You\'re Dead','For the most part it\'s a tale of a kid Trevor who gets picked on a lot a school. Not as much as he used to...','2002','BangBangYourDead.jpg','http://www.cinemagia.ro/trailer/bang-bang-youre-dead-5882/','2002-10-13','R'),
+ (26,'Drama','Bang Bang You\'re Dead','For the most part it\'s a tale of a kid Trevor who gets picked on a lot a school. Not as much as he used to...','2002','BangBangYourDead.jpg','https://video.cinemagia.ro/if/921077&movie_id=8494','2002-10-13','R'),
  (27,'Drama','Basic','A DEA agent investigates the disappearance of a legendary Army ranger drill sergeant and several of his cadets during a training exercise gone severely awry.','2003','Basic.jpg','http://www.imdb.com/video/screenplay/vi112787737/','2003-03-28','R'),
  (28,'Drama','Basic Instinct','A police detective is in charge of the investigation of a brutal murder in which a beautiful and seductive woman could be involved.','1992','BasicInstinct.jpg','http://www.imdb.com/video/screenplay/vi129564953/','1992-03-20','R'),
  (29,'Drama','Before Sunset','It\'s nine years after Jesse and Celine first met; now they encounter one another on the French leg of Jesse\'s book tour.','2004','BeforeSunset.jpg','http://www.imdb.com/video/screenplay/vi2813919513/','2004-06-17','R'),
@@ -208,7 +208,7 @@ INSERT INTO `movie` (`movieID`,`movieGenre`,`movieTitle`,`movieDescription`,`mov
  (41,'Comedy','Buffalo \'66','Billy is released after five years in prison. In the next moment he kidnaps teenage student Layla and visits his parents with her...','1998','Buffallo66.jpg','http://www.imdb.com/video/screenplay/vi1102840089/','1998-06-26','R'),
  (42,'Drama','Carandiru','Film based on real life experiences of doctor Drauzio Varella inside dreadful State penitentiary Carandiru...','2003','Carandiru.jpg','http://www.imdb.com/video/screenplay/vi3971744025/','2003-04-11','R'),
  (43,'Drama','Carlito\'s Way','A Puerto-Rican ex-con just released from prison pledges to stay away from drugs and violence despite the pressure around him and lead on to a better life outside of NYC.','1993','CarlitosWay.jpg','http://www.imdb.com/video/screenplay/vi431816985/','1993-11-10','R'),
- (44,'Drama','Carne trémula','After leaving jail Víctor is still in love with Elena but she\'s married to the former cop -now basketball player- who became paralysed by a shot from Víctor\'s gun...','1997','CarneTremula.jpg','http://www.cinemagia.ro/trailer/carne-tremula-6117/','1998-01-16','R'),
+ (44,'Drama','Carne trémula','After leaving jail Víctor is still in love with Elena but she\'s married to the former cop -now basketball player- who became paralysed by a shot from Víctor\'s gun...','1997','CarneTremula.jpg','https://video.cinemagia.ro/if/718555&movie_id=418','1998-01-16','R'),
  (45,'Drama','Casino','Greed deception money power and murder occur between two mobster best friends and a trophy wife over a gambling empire.','1995','Casino.jpg','http://www.imdb.com/video/screenplay/vi1035796761/','1995-11-22','R'),
  (46,'Drama','Cast Away','A FedEx executive must transform himself physically and emotionally to survive a crash landing on a deserted island.','2000','CastAway.jpg','http://www.youtube.com/watch?v=2TWYDogv4WQ','2000-12-22','PG-13'),
  (47,'Drama','Catch Me If You Can','A true story about Frank Abagnale Jr. who before his 19th birthday successfully conned millions of dollars worth of checks as a Pan Am pilot doctor and legal prosecutor.','2002','CatchMeIfYouCan.jpg','http://www.imdb.com/video/screenplay/vi1220346137/','2002-12-25','PG-13'),
@@ -252,7 +252,6 @@ DROP TABLE IF EXISTS `viewedmovies`;
 CREATE TABLE `viewedmovies` (
   `movieID` int(10) unsigned NOT NULL auto_increment,
   `memberID` int(10) unsigned NOT NULL,
-  `numViews` int(10) unsigned NOT NULL,
   PRIMARY KEY USING BTREE (`movieID`,`memberID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
@@ -262,10 +261,10 @@ CREATE TABLE `viewedmovies` (
 --
 
 INSERT INTO `viewedmovies` (`movieID`, `memberID`, `numViews`) VALUES
-  (1, 1, 2),
-  (2, 2, 4),
-  (3, 3, 1),
-  (51, 13, 3);
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (51, 13);
 
 --
 -- Definition of table `movieperson`

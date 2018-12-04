@@ -164,3 +164,16 @@ function validatePayment() {
 	}
 	return true;
 }
+
+function validateReview() {
+	var form = document.forms["review"];
+	var reviewtext = form["reviewtext"];
+	
+	if (reviewText.value == "") {
+		window.alert("Review cannot be blank!");
+		reviewtext.focus();
+		return false;
+	}
+	return true;
+
+}
