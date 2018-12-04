@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
 <html>
 <link href="landing.css" rel="stylesheet">
@@ -12,6 +10,6 @@
 	<body>
 		<%@ include file="/WEB-INF/shared/header.jspf" %>
 		<%@ include file="/WEB-INF/shared/landing.jspf" %>
-		<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
+		<%@ include file="/WEB-INF/shared/handleerror.jspf" %>		
 	</body>
 </html>

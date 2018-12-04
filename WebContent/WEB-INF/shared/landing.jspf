@@ -1,25 +1,53 @@
-<div class="carousel">
-	<h1 align="center">Featured</h1>
-	<div class="carousel-row">
-		<div class="carousel-tile">
-			<img alt="" src="/CinemaCentral/movieImages/Avengers.jpg"
-				style="width: 90%; height: 100%;">
-		</div>
-		<div class="carousel-tile">
-			<img alt="" src="/CinemaCentral/movieImages/inception.png"
-				style="width: 90%; height: 100%;">
-		</div>
-		<div class="carousel-tile">
-			<img alt="" src="/CinemaCentral/movieImages/anchorman.jpg"
-				style="width: 90%; height: 100%;">
-		</div>
-		<div class="carousel-tile">
-			<img alt="" src="/CinemaCentral/movieImages/incrediables.jpg"
-				style="width: 90%; height: 100%;">
-		</div>
-		<div class="carousel-tile">
-			<img alt="" src="/CinemaCentral/movieImages/theshining.jpg"
-				style="width: 90%; height: 100%;">
-		</div>
-	</div>
-</div>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="object.Movie" %>
+<%@ page import="dao.MovieDao" %>
+
+	<% 
+	ArrayList<Movie> fetMovies = new ArrayList<Movie>();
+	ArrayList<Movie> recMovies = new ArrayList<Movie>();
+	ArrayList<Movie> fetResult = null;
+	ArrayList<Movie> recResult = null;
+	fetResult = MovieDao.getFeaturedMovies();
+	recResult = MovieDao.getRecommendedMovies();
+	for( Movie m : fetResult){
+		if(!fetMovies.contains(m)){
+			fetMovies.add(m);
+		}
+	}
+	for( Movie m : recResult){
+		if(!recMovies.contains(m)){
+			recMovies.add(m);
+		}
+}
+%>
+
+<%
+		out.print("<div class=\"carousel\">");
+		out.print("<h1 align=\"center\">Featured</h1>");
+		out.print("<div class=\"carousel-row\">");
+		for (Movie m : fetMovies){
+			out.print("<div class=\"carousel-tile\">");
+			//System.out.println(m.getMovieTitle());
+			out.print("<a href= \"review.jsp\"><img alt=\"\" src=\"/CinemaCentral/images/" + m.getMovieImage() 
+			+ "\" onerror=\"this.onerror=null;this.src='images/default.png';\"  style= \"width: 60%; height: 90%;\"></a>");
+	    	out.print("</div>");
+		}
+	    out.print("</div>");
+	    out.print("</div>");
+		%>
+<%
+	out.print("<div class=\"carousel\">");
+	out.print("<h1 align=\"center\">Recommended</h1>");
+	out.print("<div  class=\"carousel-row\">");
+	for (Movie m : recMovies){
+		//System.out.println(m.getMovieTitle());
+		out.print("<div class=\"carousel-tile\">");
+		out.print("<a href= \"review.jsp\"><img alt=\"\" src=\"/CinemaCentral/images/" + m.getMovieImage() 
+		+  "\" onerror=\"this.onerror=null;this.src='images/default.png';\"  style= \"width: 60%; height: 90%;\"></a>");
+		out.print("</div>");
+	}
+	out.print("</div>");
+	out.print("</div>");
+%>

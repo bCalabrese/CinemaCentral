@@ -1,3 +1,4 @@
+@charset "ISO-8859-1";
 
 /* Global Variables */
 :root {
@@ -5,6 +6,7 @@
       /* Tile Dimensions */
       --carousel-tile-spacing: 10px;
       --carousel-tile-width:   250px;
+      --carousel-tile-height:  calc(var(--carousel-tile-width) / (16 / 9));
 
       /* Growth Factor */
       --carousel-growth-factor: 1.5;
@@ -29,7 +31,7 @@
       margin: 0;
       box-sizing: border-box;
       width: 100%;
-      overflow-x: auto;
+      overflow-x: hidden;
       overflow-y: hidden;
 }
 
@@ -89,4 +91,9 @@
 .carousel-tile:hover ~ .carousel-tile {
       -webkit-transform: translate3d(var(--carousel-offset-right), 0, 0);
       transform: translate3d(var(--carousel-offset-right), 0, 0);
+}
+
+/* Ensure All Elements Inside Tile are Block */
+.carousel-tile * {
+      display: block;
 }
