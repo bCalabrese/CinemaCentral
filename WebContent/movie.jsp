@@ -19,6 +19,7 @@
 				Movie m = MovieDao.getMovieByID(Integer.parseInt(request.getParameter("movieid")));
 				boolean checkedOut = MovieDao.isMovieCheckedOut(userBean.getMemberID(), m.getMovieID());
 				boolean disabled = (MovieDao.numCheckedOutMovies(userBean.getMemberID()) >= UserDao.getNumMoviesByID(userBean.getMemberID()));
+				boolean inQueue = MovieDao.isMovieinQueue(userBean.getMemberID(), m.getMovieID());;
 				%>
 				<div>
 					<h1 style="text-align: center;"><%out.print(m.getMovieTitle());%></h1><hr/>
@@ -37,8 +38,27 @@
 					<form action="Movie" method="post" name="checkout">
 						<input id="memberid" name="memberid" type="hidden" value="<%out.print(userBean.getMemberID());%>"/>
 						<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
+						<input id="moviename" name="moviename" type="hidden" value="<%out.print(m.getMovieTitle());%>"/>
 						<input id="returning" name="returning" type="hidden" value="<%out.print((checkedOut) ? "1" : "0");%>"/>
-						<button type="submit" class="btn btn-default col-sm-8" name="submit" <%if (disabled && !checkedOut) { out.print("disabled"); } %>><%out.print((checkedOut) ? "Return Movie" : "Download Movie");%></button>
+						<button type="submit" class="btn btn-default col-sm-8" name="submit"
+						<%if (disabled && !checkedOut) 
+						{ out.print("disabled"); } 
+						%>>
+						<%
+						out.print((checkedOut) ? "Return Movie" : "Download Movie");
+						%>
+						</button>
+						
+						<input id="queue" name="queue" type="hidden" value="<%out.print((inQueue) ? "1" : "0");%>"/>
+						<button type="submit" class="btn btn-default col-sm-8" name="submit"
+						<%if (disabled && !inQueue) 
+						{ out.print("disabled"); } 
+						%>>
+						<%
+						out.print((inQueue) ? "Remove from Queue" : "Add to Queue");
+						%>
+						</button>
+						
 					</form>
 				</div>
 				<div class="col-sm-offset-1 col-sm-6">

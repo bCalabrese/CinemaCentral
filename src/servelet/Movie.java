@@ -30,11 +30,18 @@ public class Movie extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int memberID = Integer.parseInt(request.getParameter("memberid"));
 		int movieID = Integer.parseInt(request.getParameter("movieid"));
+		String moviename = request.getParameter("moviename");
 		if (request.getParameter("returning").equals("1")) {
 			MovieDao.returnMovie(memberID, movieID);
 		}
 		else {
 			MovieDao.checkOutMovie(memberID, movieID);
+		}
+		if (request.getParameter("queue").equals("1")) {
+			MovieDao.removeFromQueue(memberID, movieID);
+		}
+		else {
+			MovieDao.addToQueue(memberID, movieID, moviename);
 		}
 		response.sendRedirect("movie.jsp?movieid=" + movieID);
 	}
