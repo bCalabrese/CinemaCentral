@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
+
 /**
  * Servlet implementation class Review
  */
@@ -26,7 +28,13 @@ public class Review extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String reviewText = request.getParameter("reviewtext");
+		int rating = Integer.parseInt(request.getParameter("stars"));
+		int memberID = Integer.parseInt(request.getParameter("memberid"));
+		int movieID = Integer.parseInt(request.getParameter("movieid"));
+		
+		UserDao.createReview(memberID, movieID, rating, reviewText);
+		response.sendRedirect("movie.jsp?movieid=" + movieID);
 	}
 
 }

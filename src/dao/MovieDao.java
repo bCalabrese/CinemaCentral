@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 
 import object.Movie;
+import object.MovieReview;
 
 public class MovieDao extends AbstractDao {
 	public static Movie getMovieByID(int movieID) {
@@ -319,5 +320,33 @@ public class MovieDao extends AbstractDao {
 			close();
 		}
 		return hasViewed;
+	}
+	
+	public static ArrayList<MovieReview> getReviewsByMovie(int movieID) {
+		ArrayList<MovieReview> reviews = new ArrayList<MovieReview>();
+		try {
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement("SELECT member.userName, moviereview.rating, moviereview.reviewText "
+					+ "FROM moviereview "
+					+ "INNER JOIN member ON member.memberID = moviereview.memberID "
+					+ "WHERE moviereview.movieID = ?;");
+			preparedStatement.setInt(1,  movieID);
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				MovieReview review = new MovieReview();
+				review.setReviewText(resultSet.getString(3));
+				review.setRating(resultSet.getInt(2));
+				review.setName(resultSet.getString(1));
+				reviews.add(review);				
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return reviews;
 	}
 }

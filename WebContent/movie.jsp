@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="javax.servlet.http.HttpServletRequest" %>
-<%@ page import="object.Movie" %>
+<%@ page import="object.*" %>
 <%@ page import="dao.*" %>
 
 <!doctype html>
 <html>
 	<head>
 		<%@ include file="/WEB-INF/shared/resources.jspf" %>
-		<meta charset="ISO-8859-1">
+		<meta charset="UTF-8">
 		<title>Cinema Central</title>
+		<script src="validate.js"></script>
 	</head>	
 	<body>  
 		<%@ include file="/WEB-INF/shared/header.jspf" %>
@@ -70,22 +71,52 @@
 				out.print("<div class='row'>"
 				+ "<div class='col-sm-offset-1 col-sm-10'>"
 				+ "	<h3>Enjoy the movie? Leave a review!</h3>"
-				+ "	<form action='Review' method='post' name='checkout'>"
-				+ "		<div class='form-group'>"
-				+ "			<textarea class='form-control' rows='4' name='reviewtext' id='reviewtext' maxlength='240'></textarea>"
-				+ "		</div>"
-				+ "		<div class='form-group'>"
-				+ "			"	
-				+ "		</div>"
+				+ "	<form action='Review' method='post' name='review' id='review' onsubmit='return validateReview();'>"
+				+ "		<input id='memberid' name='memberid' type='hidden' value='" + userBean.getMemberID() + "'/>"
+				+ "		<input id='movieid' name='movieid' type='hidden' value='" + m.getMovieID() + "'/>"
 				+ "		<div class='form-group'>"
 				+ "			<button type='submit' class='btn btn-default col-sm-4 col-sm-offset-8' name='submit'>Post Review</button>"
 				+ "		</div>"
+				+ "	<div class='form-group rating'>"
+				+ "  <label>"
+				+ "    <input type='radio' name='stars' value='1' />"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "  </label>"
+				+ "  <label>"
+				+ "    <input type='radio' name='stars' value='2' />"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "  </label>"
+				+ "  <label>"
+				+ "    <input type='radio' name='stars' value='3' />"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "  </label>"
+				+ "  <label>"
+				+ "    <input type='radio' name='stars' value='4' checked/>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "  </label>"
+				+ "  <label>"
+				+ "    <input type='radio' name='stars' value='5' />"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "    <span class='icon glyphicon glyphicon-star'></span>"
+				+ "  </label>"
+				+ "		</div>"
+				+ "		<div class='form-group'>"
+				+ "			<textarea class='form-control' rows='4' name='reviewtext' id='reviewtext' maxlength='240'></textarea>"
+				+ "		</div>"
 				+ "	</form>"
+				+ "</div>"
 				+ "</div>");
-				
 			}
 			%>
-			</div>
 	    </div>
 	</body>
 </html>

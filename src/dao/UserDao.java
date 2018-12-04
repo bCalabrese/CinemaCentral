@@ -163,4 +163,25 @@ public class UserDao extends AbstractDao {
 		}
 		return numMovies;
 	}
+	
+	public static void createReview(int memberID, int movieID, int rating, String reviewText) {
+		try {
+			connect = getConnection();
+			
+			preparedStatement = connect.prepareStatement("REPLACE INTO moviereview (memberID, movieID, rating, reviewText) "
+					+ "VALUES (?,?,?,?);");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			preparedStatement.setInt(3, rating);
+			preparedStatement.setString(4, reviewText);
+			
+			preparedStatement.executeUpdate();
+		}
+		catch (Exception e) {
+			System.out.println("UserDao::createReview: " + e);
+		}
+		finally {
+			close();
+		}
+	}
 }
