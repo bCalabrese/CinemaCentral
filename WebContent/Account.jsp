@@ -49,7 +49,8 @@
   </div>
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Address" value="
+    <input type="text" class="form-control" id="inputAddress" name="billAddressLine1" placeholder="Address" value="
+
       <%
       if(user != null){
     	  out.print(user.getAddr1());
@@ -58,7 +59,9 @@
   </div>
   <div class="form-group">
     <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" value="
+
+    <input type="text" class="form-control" id="inputAddress2" name="billAddressLine2" placeholder="Apartment, studio, or floor" value="
+
       <%
       if(user != null){
     	  out.print(user.getAddr2());
@@ -69,14 +72,18 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" value="
+
+      <input type="text" class="form-control" id="inputCity" name="billCity" value="
+
       <%if(user != null){
     	  out.print(user.getCity());
     	  }%>">
     </div>
     <div class="form-row col-md-4">
       <label for="inputState">State</label>
-      <input id="inputState" class="form-control" name="state" value="
+
+      <input id="inputState" class="form-control" name="billState" value="
+
       <%if(user != null){
     	  out.print(user.getState());
     	  }%>">
@@ -84,7 +91,9 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip" value="
+
+      <input type="text" class="form-control" id="inputZip" name="billZipCode" value="
+
       <%if(user != null){
     	  out.print(user.getZipcode());
     	  }%>">
