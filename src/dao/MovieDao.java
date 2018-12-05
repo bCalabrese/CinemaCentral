@@ -411,7 +411,8 @@ public class MovieDao extends AbstractDao {
 			preparedStatement = connect.prepareStatement("SELECT "
 			+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased,"
 			+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
-			+ "FROM movie WHERE movie.movieID = 1 OR movie.movieID = 2 OR movie.movieID = 3 OR movie.movieID = 4 OR movie.movieID = 5; ");			
+			+ "FROM movie "
+			+ "WHERE movie.movieID = 1 OR movie.movieID = 2 OR movie.movieID = 3 OR movie.movieID = 4 OR movie.movieID = 5; ");			
 			
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -451,6 +452,95 @@ public class MovieDao extends AbstractDao {
 			
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
+				Movie movie = new Movie();
+				movie.setMovieID(resultSet.getInt(1));
+				movie.setMovieGenre(resultSet.getString(2));
+				movie.setMovieTitle(resultSet.getString(3));
+				movie.setMovieDescription(resultSet.getString(4));
+				movie.setMovieReleaseYear(resultSet.getInt(5));
+				movie.setMovieImage(resultSet.getString(6));
+				movie.setMovieTrailer(resultSet.getString(7));
+				movie.setMovieReleaseDate(resultSet.getDate(8));
+				movie.setMovieRating(resultSet.getString(9));
+				movies.add(movie);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			close();
+		}
+		return movies;
+	}
+	
+	public static ArrayList<Movie> advancedMovieSearch(String title, String actor, int year, String[] genres, String order) {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		try {
+			StringBuilder statement = new StringBuilder("SELECT DISTINCT "
+					+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased, "
+					+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
+					+ "FROM movie "
+					+ "INNER JOIN movieperson ON movie.movieID=movieperson.movieID AND movieperson.actor=1 "
+					+ "INNER JOIN person ON movieperson.personID=person.personID "
+					+ "WHERE movie.movieTitle LIKE ? ");
+			if (actor != null && !actor.isEmpty()) {
+				statement.append("AND (person.personFirstName LIKE ? OR person.personLastName LIKE ?) ");
+			}
+			
+			if (year != 0) {
+				statement.append("AND movie.movieYearReleased = ? ");
+			}
+			
+			if (genres != null && genres.length != 0) {
+				statement.append("AND (");
+				boolean first = true;
+				for (String genre : genres) {
+					if (first) {
+						statement.append("movie.movieGenre LIKE ? ");
+						first = false;
+					}
+					else {
+						statement.append(" OR movie.movieGenre LIKE ? ");
+					}
+				}
+				statement.append(") ");
+			}
+			
+			if (order != null) {
+				statement.append("ORDER BY " + order + " ASC");
+			}
+			statement.append(";");
+			
+			connect = getConnection();
+			preparedStatement = connect.prepareStatement(statement.toString());
+			
+			int index = 1;
+			preparedStatement.setString(index, "%"+title+"%");
+			index++;
+			
+			if (actor != null && !actor.isEmpty()) {
+				preparedStatement.setString(index, "%"+actor+"%");
+				index++;
+				preparedStatement.setString(index, "%"+actor+"%");
+				index++;
+			}
+			
+			if (year != 0) {
+				preparedStatement.setInt(index, year);
+				index++;
+			}
+			
+			if (genres != null && genres.length != 0) {
+				for (String genre : genres) {
+					preparedStatement.setString(index, genre);
+					index++;
+				}
+			}
+			
+			
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Movie movie = new Movie();
 				movie.setMovieID(resultSet.getInt(1));
 				movie.setMovieGenre(resultSet.getString(2));
