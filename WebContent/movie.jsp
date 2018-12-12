@@ -60,7 +60,7 @@
 						<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
 						<input id="moviename" name="moviename" type="hidden" value="<%out.print(m.getMovieTitle());%>"/>
 						<input id="queue" name="queue" type="hidden" value="<%out.print((inQueue) ? "1" : "0");%>"/>
-						<button type="submit" class="btn btn-default col-sm-8" name="submit">
+						<button style="width: 50%;background: none;border: 2px solid #cc2a52;color: white;padding: 5px;" type="submit" class="btn btn-default col-sm-8" name="submit">
 						<%
 						out.print((inQueue) ? "Remove from Queue" : "Add to Queue");
 						%>
@@ -72,7 +72,7 @@
 						<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
 						<input id="moviename" name="moviename" type="hidden" value="<%out.print(m.getMovieTitle());%>"/>
 						<input id="favorite" name="favorite" type="hidden" value="<%out.print((inFavorites) ? "1" : "0");%>"/>
-						<button type="submit" class="btn btn-default col-sm-8" name="submit">
+						<button style="width: 50%;background: none;border: 2px solid #cc2a52;color: white;padding: 5px;" type="submit" class="btn btn-default col-sm-8" name="submit">
 						<%
 						out.print((inFavorites) ? "Remove from Favorites" : "Add to Favorites");
 						%>
@@ -81,7 +81,7 @@
 					
 				<form action="review.jsp" method="get" name='queue'>
 					<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
-					<button type='submit' class="btn btn-default col-sm-8" name='review'>Review Page</button>
+					<button style="width: 50%;background: none;border: 2px solid #cc2a52;color: white;padding: 5px;" type='submit' class="btn btn-default col-sm-8" name='review'>Review Page</button>
 				</form>
 				
 				</div>

@@ -18,7 +18,7 @@
 		int movieID = Integer.parseInt(request.getParameter("movieid"));
 	ArrayList<MovieReview> reviews = MovieDao.getReviewsByMovie(movieID);
 	for (MovieReview review : reviews) {
-			out.print("<div>");
+			out.print("<div style='color:white;'>");
 			out.print(review.getRating() + "<br/>" + review.getReviewText() + "<br/>" + review.getName());
 			out.print("</div>");
 		}
