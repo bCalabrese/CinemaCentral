@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link href="landing.css" rel="stylesheet">
+<link href="css/landing.css" rel="stylesheet">
 	<head>
 		<%@ include file="/WEB-INF/shared/resources.jspf" %>
 		<meta charset="ISO-8859-1">
@@ -8,10 +8,8 @@
 		<script src="validate.js"></script>
 	</head>
 	<body>
-
 		<%@ include file="/WEB-INF/shared/header.jspf" %>
 		<%@ include file="/WEB-INF/shared/landing.jspf" %>
 		<%@ include file="/WEB-INF/shared/handleerror.jspf" %>		
-
 	</body>
 </html>

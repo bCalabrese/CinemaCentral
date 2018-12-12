@@ -19,7 +19,7 @@
     </form>
     <ul class="nav navbar-nav">
       <li><a href="queue.jsp">Queue</a></li>
-      <li><a href="#">Favorites</a></li>
+      <li><a href="favorites.jsp">Favorites</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="Account.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>

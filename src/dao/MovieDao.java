@@ -7,6 +7,8 @@ import object.Movie;
 import object.MovieReview;
 
 public class MovieDao extends AbstractDao {
+	//public static ArrayList<Integer> featuredMovies = new ArrayList<Integer>();
+	
 	public static Movie getMovieByID(int movieID) {
 		Movie movie = null;
 		try {
@@ -406,12 +408,17 @@ public class MovieDao extends AbstractDao {
 
 	public static ArrayList<Movie> getFeaturedMovies() {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
+		Movie m = new Movie();
+		m.setFeaturedMovies(11, 43, 51, 2, 4);
+
 		try {
 			connect = getConnection();
 			preparedStatement = connect.prepareStatement("SELECT "
-			+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased,"
-			+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
-			+ "FROM movie WHERE movie.movieID = 1 OR movie.movieID = 2 OR movie.movieID = 3 OR movie.movieID = 4 OR movie.movieID = 5; ");			
+					+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased,"
+					+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
+					+ "FROM movie WHERE movie.movieID = " + m.getFeaturedMovies().get(0)  + " OR movie.movieID = " 
+					+ m.getFeaturedMovies().get(1) + " OR movie.movieID = " + m.getFeaturedMovies().get(2) + " OR movie.movieID = "
+					+ m.getFeaturedMovies().get(3) + " OR movie.movieID = " + m.getFeaturedMovies().get(4)  + " ;");		
 			
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -436,18 +443,19 @@ public class MovieDao extends AbstractDao {
 		}
 		return movies;
 	}
-
+	
 	public static ArrayList<Movie> getRecommendedMovies() {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
-		Random rand = new Random();
+		Movie m = new Movie();
+		m.setRecommendedMovies(1, 14, 40, 27, 34);
 		try {
 			connect = getConnection();
 			preparedStatement = connect.prepareStatement("SELECT "
 			+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased,"
 			+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
-			+ "FROM movie WHERE movie.movieID = " + rand.nextInt(54)  + " OR movie.movieID = " 
-			+ (rand.nextInt(51) + 1) + " OR movie.movieID = " + (rand.nextInt(51) + 1) + " OR movie.movieID = "
-			+ (rand.nextInt(51) + 1) + " OR movie.movieID = " + (rand.nextInt(51) + 1)  + " ;");		
+			+ "FROM movie WHERE movie.movieID = " + m.getRecommenedMovies().get(0)  + " OR movie.movieID = " 
+			+ m.getRecommenedMovies().get(1) + " OR movie.movieID = " + m.getRecommenedMovies().get(2) + " OR movie.movieID = "
+			+ m.getRecommenedMovies().get(3) + " OR movie.movieID = " + m.getRecommenedMovies().get(4)  + " ;");		
 			
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {

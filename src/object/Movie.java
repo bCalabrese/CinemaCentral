@@ -1,5 +1,6 @@
 package object;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Movie {
@@ -12,6 +13,8 @@ public class Movie {
 	private String movieTrailer;
 	private Date movieReleaseDate;
 	private String movieRating;
+	private ArrayList<Integer> featuredMovies = new ArrayList<Integer>();
+	private ArrayList<Integer> recommenedMovies = new ArrayList<Integer>();
 	
 	public boolean equals(Object movie) {
 		return (this.movieID == ((Movie)movie).movieID);
@@ -76,5 +79,27 @@ public class Movie {
 	}
 	public void setMovieRating(String movieRating) {
 		this.movieRating = movieRating;
+	}
+	public void setFeaturedMovies(int m0, int m1, int m2, int m3, int m4) {
+		this.featuredMovies.clear();
+		this.featuredMovies.add(m0);
+		this.featuredMovies.add(m1);
+		this.featuredMovies.add(m2);
+		this.featuredMovies.add(m3);
+		this.featuredMovies.add(m4);
+	}
+	public void setRecommendedMovies(int m0, int m1, int m2, int m3, int m4) {
+		this.recommenedMovies.clear();
+		this.recommenedMovies.add(m0);
+		this.recommenedMovies.add(m1);
+		this.recommenedMovies.add(m2);
+		this.recommenedMovies.add(m3);
+		this.recommenedMovies.add(m4);
+	}
+	public ArrayList<Integer> getFeaturedMovies(){
+		return featuredMovies;
+	}
+	public ArrayList<Integer> getRecommenedMovies(){
+		return recommenedMovies;
 	}
 }
