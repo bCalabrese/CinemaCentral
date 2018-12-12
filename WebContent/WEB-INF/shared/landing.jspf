@@ -27,7 +27,7 @@
 
 <%
 		out.print("<div class=\"carousel\">");
-		out.print("<h1 align=\"center\">Featured</h1>");
+		out.print("<h1 style='color: #cc2a52;'align=\"center\">Featured</h1>");
 		out.print("<div class=\"carousel-row\">");
 		for (Movie m : fetMovies){
 			out.print("<div class=\"carousel-tile\">");
@@ -41,7 +41,7 @@
 		%>
 <%
 	out.print("<div class=\"carousel\">");
-	out.print("<h1 align=\"center\">Recommended</h1>");
+	out.print("<h1 style='color: #cc2a52;'align=\"center\">Recommended</h1>");
 	out.print("<div  class=\"carousel-row\">");
 	for (Movie m : recMovies){
 		//System.out.println(m.getMovieTitle());

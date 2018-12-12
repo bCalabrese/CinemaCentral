@@ -1,3 +1,55 @@
+body {
+	margin:0;
+	padding:0;
+	background: url("http://i.imgur.com/7Prf6.jpg") no-repeat;
+	background-size: cover;
+	
+}
+
+.button{
+		width: 25%;
+		background: none;
+		border: 2px solid #cc2a52;
+		color: white;
+		padding: 5px;
+		
+		}
+.button:hover{
+		background:#cc2a52;
+		color: white;
+		}
+.h1{
+	color: #cc2a52;
+}
+.form-control{
+	background: transparent;
+	color: white;
+}
+.form-group{
+	background: transparent;
+	color: #cc2a52;
+}
+.form-control-plaintext{
+	background: transparent;
+	color: white;
+	border: 1px solid white;
+}
+.form-row{
+	color: #cc2a52;
+}
+.footer{
+	padding: 1rem;
+	background: transparent;
+	color: white;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	bottom:0;
+	right:0;
+	left:0;
+
+}
+
 .rating {
   display: inline-block;
   position: relative;
@@ -51,12 +103,12 @@
 }
 
 .rating label:last-child .icon {
-  color: #000;
+  color: #808080;
 }
 
 .rating:not(:hover) label input:checked ~ .icon,
 .rating:hover label:hover input ~ .icon {
-  color: #09f;
+  color: #cc2a52;
 }
 
 .rating label input:focus:not(:checked) ~ .icon:last-child {

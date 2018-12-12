@@ -16,8 +16,8 @@
 	<%@ include file="/WEB-INF/shared/header.jspf"%>
 	<%
 		int movieID = Integer.parseInt(request.getParameter("movieid"));
-		ArrayList<MovieReview> reviews = MovieDao.getReviewsByMovie(movieID);
-		for (MovieReview review : reviews) {
+	ArrayList<MovieReview> reviews = MovieDao.getReviewsByMovie(movieID);
+	for (MovieReview review : reviews) {
 			out.print("<div>");
 			out.print(review.getRating() + "<br/>" + review.getReviewText() + "<br/>" + review.getName());
 			out.print("</div>");
