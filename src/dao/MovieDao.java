@@ -229,7 +229,7 @@ public class MovieDao extends AbstractDao {
 		return count;
 	}
 
-	public static ArrayList<Movie> getMovieSFromFavorites(int memberId) {
+	public static ArrayList<Movie> getMoviesFromFavorites(int memberId) {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		try {
 			connect = getConnection();
@@ -242,7 +242,6 @@ public class MovieDao extends AbstractDao {
 					+ "WHERE favorite.memberID = ?");
 
 			preparedStatement.setInt(1, memberId);
-
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Movie movie = new Movie();
@@ -289,7 +288,7 @@ public class MovieDao extends AbstractDao {
 		return director;
 	}
 
-	public static ArrayList<Movie> getMovieSFromQueue(int memberId) {
+	public static ArrayList<Movie> getMoviesFromQueue(int memberId) {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		try {
 			connect = getConnection();
@@ -303,7 +302,6 @@ public class MovieDao extends AbstractDao {
 					+ " ORDER BY queue.queueSequence");
 
 			preparedStatement.setInt(1, memberId);
-
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Movie movie = new Movie();
@@ -521,5 +519,90 @@ public class MovieDao extends AbstractDao {
 		} finally {
 			close();
 		}
+	}
+	public static boolean isMovieinFavorites(int memberID, int movieID) {
+		boolean inFavorites = false;
+		try {
+			connect = getConnection();
+
+			preparedStatement = connect.prepareStatement(
+					"SELECT * FROM favorite WHERE favorite.memberID = ? AND favorite.movieID = ?");
+
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			resultSet = preparedStatement.executeQuery();
+
+			inFavorites = resultSet.next();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			close();
+		}
+		return inFavorites;
+	}
+	public static void addToFavorites(int memberID, int movieID) {
+		try {
+			connect = getConnection();
+
+			preparedStatement = connect.prepareStatement("INSERT INTO `favorite` (`memberID`,`movieID`) VALUES (?,?)");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			close();
+		}
+	}
+
+	public static void removeFromFavorites(int memberID, int movieID) {
+		try {
+			connect = getConnection();
+
+			preparedStatement = connect.prepareStatement(
+					"DELETE FROM favorite WHERE favorite.memberID = ? AND favorite.movieID = ?");
+			preparedStatement.setInt(1, memberID);
+			preparedStatement.setInt(2, movieID);
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			close();
+		}
+	}
+	public static ArrayList<Movie> getMoviesFromCheckout(int memberId) {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		try {
+			connect = getConnection();
+
+			preparedStatement = connect.prepareStatement("SELECT "
+					+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, "
+					+ "movie.movieYearReleased, movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
+					+ "FROM movie " 
+					+ "LEFT JOIN checkedout ON checkedout.movieID = movie.movieID "
+					+ "WHERE checkedout.memberID = ?");
+
+			preparedStatement.setInt(1, memberId);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Movie movie = new Movie();
+				movie.setMovieID(resultSet.getInt(1));
+				movie.setMovieGenre(resultSet.getString(2));
+				movie.setMovieTitle(resultSet.getString(3));
+				movie.setMovieDescription(resultSet.getString(4));
+				movie.setMovieReleaseYear(resultSet.getInt(5));
+				movie.setMovieImage(resultSet.getString(6));
+				movie.setMovieTrailer(resultSet.getString(7));
+				movie.setMovieReleaseDate(resultSet.getDate(8));
+				movie.setMovieRating(resultSet.getString(9));
+				movies.add(movie);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			close();
+		}
+		return movies;
 	}
 }

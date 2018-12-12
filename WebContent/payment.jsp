@@ -20,7 +20,7 @@
 				<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
 				<h1>Payment Information</h1>
 				<div class="form-group">
-					<label for="creditCardCCV">creditCardCCV:</label>
+					<label for="creditCardCCV">Credit Card CCV Number:</label>
 					<input type="text" pattern="[0-9]{5}" title="5 digit CCV Number" class="form-control" name="creditCardCCV" id="creditCardCCV"
 					value = "<%
 					if (!CardDao.doesMemberExist(userBean.getMemberID()))
@@ -34,7 +34,7 @@
 					%>">
 				</div>
 				<div class="form-group">
-					<label for="creditCardNumber">creditCardNumber:</label>
+					<label for="creditCardNumber">Credit Card Number:</label>
 					<input type="text" pattern="[0-9]{16}" title="16 digit Credit Card Number" class="form-control" name="creditCardNumber" id="creditCardNumber" maxlength="16"
 					value = "<% 
 					if (!CardDao.doesMemberExist(userBean.getMemberID()))
@@ -48,7 +48,7 @@
 					%>">
 				</div>
 				<div class="form-group">
-					<label for="cardHolderFirstName">cardHolderFirstName:</label>
+					<label for="cardHolderFirstName">Card Holder First Name:</label>
 					<input type="text" class="form-control" name="cardHolderFirstName" id="cardHolderFirstName"					
 					value = <% 
 					if (!CardDao.doesMemberExist(userBean.getMemberID()))
@@ -62,7 +62,7 @@
 					%>>
 				</div>
 				<div class="form-group">
-					<label for="cardHolderLastName">cardHolderLastName:</label>
+					<label for="cardHolderLastName">Card Holder Last Name:</label>
 					<input type="text" class="form-control" name="cardHolderLastName" id="cardHolderLastName"
 					value = <% 
 					if (!CardDao.doesMemberExist(userBean.getMemberID()))
@@ -76,7 +76,7 @@
 					%>>
 				</div>
 				<div class="form-group">
-					<label for="expYear">expYear:</label>
+					<label for="expYear">Card Exp Year:</label>
 					<select name="expYear" class="form-control" id="expYear">
 					<option value=
 						<% 
@@ -105,7 +105,7 @@
   					</select>
 				</div>
 				<div class="form-group">
-					<label for="expMonth">expMonth:</label>
+					<label for="expMonth">Exp Month:</label>
 					<select name="expMonth" class="form-control" id="expMonth">
 						<option value=
 						<% 
@@ -132,7 +132,7 @@
   					</select>
 				</div>
 				<div class="form-group">
-					<label for="ccType">ccType:</label>
+					<label for="ccType">Credit Card Type:</label>
   					<select name="ccType" class="form-control" id="ccType">
   						<option value=
 						<% 

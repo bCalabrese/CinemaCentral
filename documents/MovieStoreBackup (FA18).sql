@@ -103,7 +103,7 @@ CREATE TABLE `member` (
   `shipAddressLine2` varchar(45) default NULL,
   `shipCity` varchar(45) default NULL,
   `shipState` varchar(45) default NULL,
-  `shipZipCode` varchar(10) default NULL,
+  `shipZipCode` varchar(45) default NULL,
   `phoneNumber` varchar(20) default NULL,
   `emailAddress` varchar(45) default NULL,
   `memberPassword` varchar(45) default NULL,
@@ -252,7 +252,6 @@ DROP TABLE IF EXISTS `viewedmovies`;
 CREATE TABLE `viewedmovies` (
   `movieID` int(10) unsigned NOT NULL auto_increment,
   `memberID` int(10) unsigned NOT NULL,
-  `numViews` int(10) unsigned NOT NULL,
   PRIMARY KEY USING BTREE (`movieID`,`memberID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
@@ -261,11 +260,11 @@ CREATE TABLE `viewedmovies` (
 -- Dumping data for table `viewedmovies`
 --
 
-INSERT INTO `viewedmovies` (`movieID`, `memberID`, `numViews`) VALUES
-  (1, 1, 2),
-  (2, 2, 4),
-  (3, 3, 1),
-  (51, 13, 3);
+INSERT INTO `viewedmovies` (`movieID`, `memberID`) VALUES
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (51, 13);
 
 --
 -- Definition of table `movieperson`
@@ -758,7 +757,8 @@ CREATE TABLE `queue` (
   `movieID` int(10) unsigned NOT NULL default '0',
   `queueSequence` int(10) auto_increment,
   `movieTitle` varchar(45) NOT NULL,
-  PRIMARY KEY  USING BTREE (`memberID`,`movieID`)
+  PRIMARY KEY  USING BTREE (`memberID`,`movieID`),
+  KEY `FK_card_1` (`queueSequence`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -935,5 +935,4 @@ movie.movieReleaseDate, movie.movieMPAARating
 FROM movie
 LEFT JOIN queue ON queue.movieID = movie.movieID
 WHERE queue.memberID = 10002;
-
 SELECT * FROM checkedout WHERE checkedout.memberID =10002;

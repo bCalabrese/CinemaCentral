@@ -20,6 +20,7 @@
 				boolean checkedOut = MovieDao.isMovieCheckedOut(userBean.getMemberID(), m.getMovieID());
 				boolean disabled = (MovieDao.numCheckedOutMovies(userBean.getMemberID()) >= UserDao.getNumMoviesByID(userBean.getMemberID()));
 				boolean inQueue = MovieDao.isMovieinQueue(userBean.getMemberID(), m.getMovieID());;
+				boolean inFavorites = MovieDao.isMovieinFavorites(userBean.getMemberID(), m.getMovieID());;
 				%>
 				<div>
 					<h1 style="text-align: center;"><%out.print(m.getMovieTitle());%></h1><hr/>
@@ -48,18 +49,37 @@
 						out.print((checkedOut) ? "Return Movie" : "Download Movie");
 						%>
 						</button>
-						
+					</form>
+					
+					<form action="Queue" method="post" name="queue">
+						<input id="memberid" name="memberid" type="hidden" value="<%out.print(userBean.getMemberID());%>"/>
+						<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
+						<input id="moviename" name="moviename" type="hidden" value="<%out.print(m.getMovieTitle());%>"/>
 						<input id="queue" name="queue" type="hidden" value="<%out.print((inQueue) ? "1" : "0");%>"/>
-						<button type="submit" class="btn btn-default col-sm-8" name="submit"
-						<%if (disabled && !inQueue) 
-						{ out.print("disabled"); } 
-						%>>
+						<button type="submit" class="btn btn-default col-sm-8" name="submit">
 						<%
 						out.print((inQueue) ? "Remove from Queue" : "Add to Queue");
 						%>
 						</button>
-						
 					</form>
+					
+					<form action="Favorites" method="post" name="favorite">
+						<input id="memberid" name="memberid" type="hidden" value="<%out.print(userBean.getMemberID());%>"/>
+						<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
+						<input id="moviename" name="moviename" type="hidden" value="<%out.print(m.getMovieTitle());%>"/>
+						<input id="favorite" name="favorite" type="hidden" value="<%out.print((inFavorites) ? "1" : "0");%>"/>
+						<button type="submit" class="btn btn-default col-sm-8" name="submit">
+						<%
+						out.print((inFavorites) ? "Remove from Favorites" : "Add to Favorites");
+						%>
+						</button>
+					</form>
+					
+				<form action="review.jsp" method="get" name='queue'>
+					<input id="movieid" name="movieid" type="hidden" value="<%out.print(m.getMovieID());%>"/>
+					<button type='submit' class="btn btn-default col-sm-8" name='review'>Review Page</button>
+				</form>
+				
 				</div>
 				<div class="col-sm-offset-1 col-sm-6">
 					<%

@@ -128,37 +128,37 @@ function validatePayment() {
 	var ccType = form["ccType"];
 	
 	if (creditCardCCV.value == "") {	
-		window.alert("Please enter your creditCardCCV.");
+		window.alert("Please enter your Credit Card CCV Number.");
 		creditCardCCV.focus();
 		return false;
 	}
 	if (creditCardNumber.value == "") {
-		window.alert("Please enter your creditCardNumber.");
+		window.alert("Please enter your Credit Card Number.");
 		creditCardNumber.focus();
 		return false;
 	}
 	if (cardHolderFirstName.value == "") {
-		window.alert("Please enter your cardHolderFirstName.");
+		window.alert("Please enter your Card Holder's First Name.");
 		cardHolderFirstName.focus();
 		return false;
 	}
 	if (cardHolderLastName.value == "") {
-		window.alert("Please enter your cardHolderLastName.");
+		window.alert("Please enter your Card Holder's Last Name.");
 		cardHolderLastName.focus();
 		return false;
 	}
 	if (expYear.value == "") {
-		window.alert("Please enter your expYear.");
+		window.alert("Please enter your card's Exp Year.");
 		expYear.focus();
 		return false;
 	}
 	if (expMonth.value == "") {
-		window.alert("Please enter your expMonth.");
+		window.alert("Please enter card's Exp Month.");
 		expMonth.focus();
 		return false;
 	}
 	if (ccType.value == "") {
-		window.alert("Please select your ccType.");
+		window.alert("Please select your Credit Card Type.");
 		ccType.focus();
 		return false;
 	}

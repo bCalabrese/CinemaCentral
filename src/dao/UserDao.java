@@ -114,7 +114,7 @@ public class UserDao extends AbstractDao {
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getUserName());
             preparedStatement.setString(4, user.getAddr1());
-            preparedStatement.setString(5, user.getAddr1());
+            preparedStatement.setString(5, user.getAddr2());
             preparedStatement.setString(6, user.getCity());
             preparedStatement.setString(7, user.getState());
             preparedStatement.setString(8, user.getZipcode());
