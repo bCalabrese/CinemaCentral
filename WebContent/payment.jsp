@@ -18,7 +18,7 @@
 		<form action="Payment" method="post" name="payment" onsubmit="return validatePayment()">
 			<div class="col-sm-offset-3 col-sm-6">
 				<%@ include file="/WEB-INF/shared/handleerror.jspf" %>
-				<h1>Payment Information</h1>
+				<h1 style="color:white;">Payment Information</h1>
 				<div class="form-group">
 					<label for="creditCardCCV">Credit Card CCV Number:</label>
 					<input type="text" pattern="[0-9]{5}" title="5 digit CCV Number" class="form-control" name="creditCardCCV" id="creditCardCCV"
@@ -149,8 +149,8 @@
 						<option value="MasterCard">Discover</option>
   					</select>
 				</div>
-				<button type="submit" class="btn btn-default col-sm-8" name="signup">Submit</button>
-				<button type="reset" class="btn btn-danger col-sm-4" name="reset">Reset</button>
+				<button type="submit" class="button" name="signup">Submit</button>
+				<button type="reset" class="button" name="reset">Reset</button>
 			</div>
 		</form>
 	</body>

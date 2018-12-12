@@ -1,4 +1,13 @@
 <%@ include file="/WEB-INF/shared/validatesession.jspf" %>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+</head>
+
+<body>
 <nav class="navbar navbar-inverse navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -29,3 +38,10 @@
     </ul>
   </div>
 </nav> 
+
+
+
+
+</body>
+
+      </html>

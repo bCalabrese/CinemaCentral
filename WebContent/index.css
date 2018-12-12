@@ -7,6 +7,9 @@ body{
 	background: url("images/bg3.jpg") no-repeat;
 	background-size: cover;
 }
+
+
+
 .login-box{
 	width: 280px;
 	position: absolute;
@@ -59,6 +62,10 @@ body{
 	border: 2px solid #cc2a52;
 	color: white;
 	padding: 5px;
+}
+.btn:hover{
+	background:#cc2a52;
+	color: white;
 }
   .multi-item-carousel{
   .carousel-inner{

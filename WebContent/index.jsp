@@ -10,9 +10,9 @@
 		<meta charset="ISO-8859-1">
 		<title>Cinema Central</title>
 		<script src="validate.js"></script>
-		<link rel="stylesheet" href="sitestyle.css" type="text/css">
+		<link rel="stylesheet" href="index.css" type="text/css">
 	
-	<body>
+	<body class="login_Page">
 		<%
 			if (userBean.isSessionValid()) {
 				// user is already logged in, send them to the landing page
