@@ -10,33 +10,41 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MovieDao;
 
 /**
- * Servlet implementation class Movie
+ * Servlet implementation class Favorites
  */
-@WebServlet("/Movie")
-public class Movie extends HttpServlet {
+@WebServlet("/Favorites")
+public class Favorites extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Movie() {
+    public Favorites() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		int memberID = Integer.parseInt(request.getParameter("memberid"));
 		int movieID = Integer.parseInt(request.getParameter("movieid"));
-		if (request.getParameter("returning").equals("1")) {
-			MovieDao.returnMovie(memberID, movieID);
-		}
-		else {
-			MovieDao.checkOutMovie(memberID, movieID);
-			MovieDao.removeFromQueue(memberID, movieID);
+		if (request.getParameter("favorite").equals("1")) {
+			MovieDao.removeFromFavorites(memberID, movieID);
+		} else {
+			MovieDao.addToFavorites(memberID, movieID);
 		}
 		response.sendRedirect("movie.jsp?movieid=" + movieID);
 	}
+
 }

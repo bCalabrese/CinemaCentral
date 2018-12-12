@@ -14,7 +14,7 @@
 <body>
 	<%@ include file="/WEB-INF/shared/header.jspf" %>
 	<%
-		ArrayList<Movie> movies = MovieDao.getMovieSFromQueue(userBean.getMemberID());
+		ArrayList<Movie> movies = MovieDao.getMoviesFromQueue(userBean.getMemberID());
 	%>
 	
 	<%

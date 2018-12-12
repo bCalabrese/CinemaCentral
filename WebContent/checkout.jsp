@@ -14,11 +14,11 @@
 <body>
 	<%@ include file="/WEB-INF/shared/header.jspf" %>
 	<%
-		ArrayList<Movie> movies = MovieDao.getMoviesFromFavorites(userBean.getMemberID());
+		ArrayList<Movie> movies = MovieDao.getMoviesFromCheckout(userBean.getMemberID());
 	%>
 	
 	<%
-	out.print("<h1 class=\"col-sm-offset-1\"><center>Favorites List</center></h1>");
+	out.print("<h1 class=\"col-sm-offset-1\"><center>Checkout List</center></h1>");
 	for (Movie m : movies) {
 		out.print("<a href=\"movie.jsp?movieid=" + m.getMovieID() + "\">");
 		out.print("<div style=\"background-color:#f4f4f4;\" class=\"col-sm-offset-1 col-sm-10 form-group text-muted\">");
