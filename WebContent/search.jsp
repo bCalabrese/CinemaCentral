@@ -16,38 +16,6 @@ String[] genres = request.getParameterValues("genre");
 String order = request.getParameter("order");
 
 movies = MovieDao.advancedMovieSearch(title, actor, year, genres, order);
-/*if (search != null) {
-	ArrayList<Movie> result = null;
-	if (request.getParameter("title") != null) {
-		result = MovieDao.getMoviesByTitle(search);
-		for (Movie m : result) {
-			if (!movies.contains(m)) {
-				movies.add(m);
-			}
-		}
-	}
-	if (request.getParameter("actor") != null) {
-		result = MovieDao.getMoviesByActor(search);
-		for (Movie m : result) {
-			if (!movies.contains(m)) {
-				movies.add(m);
-			}
-		}
-	}
-	if (request.getParameter("date") != null) {
-		try {
-			result = MovieDao.getMoviesByYear(Integer.parseInt(search));
-			for (Movie m : result) {
-				if (!movies.contains(m)) {
-					movies.add(m);
-				}
-			}
-		}
-		catch (NumberFormatException e) {
-			
-		}
-	}
-}*/
 %>
 
 <!DOCTYPE html>
@@ -82,9 +50,10 @@ movies = MovieDao.advancedMovieSearch(title, actor, year, genres, order);
 					<option value='movie.movieTitle'>Title</option>
 					<option value='movie.movieYearReleased'>Year</option>
 					<option value='movie.movieMPAARating'>MPAA</option>
+					<option value='movie.movieGenre'>Genre</option>
 				</select>
 			</div>
-			<input type='hidden' name='advanced' id='advanced' value='advanced'>
+			<input type='hidden' name='advanced' id='secret' value='advanced'>
 		</div>
 	</script>
 	<script>
@@ -100,6 +69,7 @@ movies = MovieDao.advancedMovieSearch(title, actor, year, genres, order);
 		if (toggleAdvanced.enabled == true) {
 			var advanced = document.createElement('div')
 			advanced.setAttribute('id', 'advanced');
+			advanced.setAttribute('class', 'row');
 			advanced.innerHTML = document.getElementById('searchinner').innerHTML;
 			form.append(advanced);
 		}
@@ -125,7 +95,7 @@ movies = MovieDao.advancedMovieSearch(title, actor, year, genres, order);
 			</div>
 			<%
 				if (request.getParameter("advanced") != null && request.getParameter("advanced") != "false") {
-					out.print("<div class='row'> "
+					out.print("<div id='advanced' class='row'> "
 					+"<div class='form-group col-sm-offset-1 col-sm-5'> "
 					+"<label for='actor'>Actor: </label> "
 					+"<input type='text' name='actor' id='actor' class='form-control' value='" + ((request.getParameter("actor") == null) ? "" : request.getParameter("actor")) + "'>"
@@ -147,13 +117,14 @@ movies = MovieDao.advancedMovieSearch(title, actor, year, genres, order);
 					+"<div class='form-group col-sm-5'> "
 					+"<label for='order'>Order By: </label> "
 					+"<select name='order' id='order' class='form-control'> "
-					+"<option value='movie.movieTitle'> Title</option> "
-					+"<option value='movie.movieYearReleased'" + ((request.getParameterValues("genre") != null && Arrays.asList(request.getParameterValues("genre")).contains("movie.movieTitle")) ? "selected" : "") + ">Year</option> "
-					+"<option value='movie.movieMPAARating'" + ((request.getParameterValues("genre") != null && Arrays.asList(request.getParameterValues("genre")).contains("movie.movieTitle")) ? "selected" : "") + ">MPAA</option> "
+					+"<option value='movie.movieTitle' " + ((request.getParameterValues("genre") != null && Arrays.asList(request.getParameterValues("genre")).contains("movie.movieTitle")) ? "selected" : "") + "> Title</option> "
+					+"<option value='movie.movieYearReleased' " + ((request.getParameterValues("genre") != null && Arrays.asList(request.getParameterValues("genre")).contains("movie.movieYearReleased")) ? "selected" : "") + ">Year</option> "
+					+"<option value='movie.movieMPAARating' " + ((request.getParameterValues("genre") != null && Arrays.asList(request.getParameterValues("genre")).contains("movie.movieMPAARating")) ? "selected" : "") + ">MPAA</option> "
+					+"<option value='movie.movieGenre' " + ((request.getParameterValues("genre") != null && Arrays.asList(request.getParameterValues("genre")).contains("movie.movieGenre")) ? "selected" : "") + ">Genre</option> "
 					+"</select> "
 					+"</div> "
-					+"<input type='hidden' name='advanced' id='advanced' value='advanced'>"
-					+"</div>); ");
+					+"<input type='hidden' name='advanced' id='secret' value='advanced'>"
+					+"</div>");
 				}
 			
 			%>

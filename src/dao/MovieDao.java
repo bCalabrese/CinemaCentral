@@ -481,9 +481,10 @@ public class MovieDao extends AbstractDao {
 					+ "movie.movieID, movie.movieGenre, movie.movieTitle, movie.movieDescription, movie.movieYearReleased, "
 					+ "movie.movieImage, movie.movieTrailer, movie.movieReleaseDate, movie.movieMPAARating "
 					+ "FROM movie "
-					+ "INNER JOIN movieperson ON movie.movieID=movieperson.movieID AND movieperson.actor=1 "
-					+ "INNER JOIN person ON movieperson.personID=person.personID "
+					+ "LEFT JOIN movieperson ON movie.movieID=movieperson.movieID AND movieperson.actor=1 "
+					+ "LEFT JOIN person ON movieperson.personID=person.personID "
 					+ "WHERE movie.movieTitle LIKE ? ");
+			
 			if (actor != null && !actor.isEmpty()) {
 				statement.append("AND (person.personFirstName LIKE ? OR person.personLastName LIKE ?) ");
 			}
